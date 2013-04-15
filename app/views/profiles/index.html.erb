@@ -1,0 +1,51 @@
+<h1>Listing profiles</h1>
+
+<table>
+  <tr>
+    <th>Technical level</th>
+    <th>Pilot level</th>
+    <th>Logistics level</th>
+    <th>Tactical level</th>
+    <th>Interpersonal level</th>
+    <th>Wit level</th>
+    <th>Reflex level</th>
+    <th>Endurance level</th>
+    <th>Perception level</th>
+    <th>Leadership level</th>
+    <th>Honesty level</th>
+    <th>Compassion level</th>
+    <th>Courage level</th>
+    <th>Honor level</th>
+    <th>Dependability level</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @profiles.each do |profile| %>
+  <tr>
+    <td><%= profile.technical_level %></td>
+    <td><%= profile.pilot_level %></td>
+    <td><%= profile.logistics_level %></td>
+    <td><%= profile.tactical_level %></td>
+    <td><%= profile.interpersonal_level %></td>
+    <td><%= profile.wit_level %></td>
+    <td><%= profile.reflex_level %></td>
+    <td><%= profile.endurance_level %></td>
+    <td><%= profile.perception_level %></td>
+    <td><%= profile.leadership_level %></td>
+    <td><%= profile.honesty_level %></td>
+    <td><%= profile.compassion_level %></td>
+    <td><%= profile.courage_level %></td>
+    <td><%= profile.honor_level %></td>
+    <td><%= profile.dependability_level %></td>
+    <td><%= link_to 'Show', profile %></td>
+    <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+    <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Profile', new_profile_path %>

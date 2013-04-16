@@ -25,6 +25,7 @@ class CharactersController < ApplicationController
   # GET /characters/new.json
   def new
     @character = Character.new
+    @profile = @character.profile || Profile.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,13 +40,23 @@ class CharactersController < ApplicationController
 
   # POST /characters
   # POST /characters.json
+  
+  
+  # Mark Review: Help us, obi-wan.
   def create
     @character = Character.new(params[:character])
+    @profile = Profile.new(params[:profile])
 
     respond_to do |format|
+
       if @character.save
         format.html { redirect_to @character, notice: 'Character was successfully created.' }
         format.json { render json: @character, status: :created, location: @character }
+      @profile.character_id = @character.id
+        
+      if @profile.save
+        format.html { redirect_to @character, notice: 'Profile was successfully created.' }
+      end
       else
         format.html { render action: "new" }
         format.json { render json: @character.errors, status: :unprocessable_entity }

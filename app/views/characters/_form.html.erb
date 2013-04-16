@@ -23,6 +23,20 @@
     <%= f.label :species %><br />
     <%= f.text_field :species %>
   </div>
+  
+  <%= fields_for :profile do |profile|%>
+
+   <div class="field">
+     <%= profile.label :technical_level %><br />
+     <%= profile.number_field :technical_level %>
+   </div>
+   
+   <%= profile.number_field :character_id %>
+   
+   <% end %>
+
+  
+  
   <div class="actions">
     <%= f.submit %>
   </div>

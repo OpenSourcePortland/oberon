@@ -23,8 +23,16 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/new
   # GET /profiles/new.json
+  
+  # Mark Review: Need help properly associating profile to character with has_one relationship
   def new
+    @character = Character.find(params[:character_id])
     @profile = Profile.new
+    @profile.character_id = @character.id
+    
+    
+    
+    #@profile = @character.profile
 
     respond_to do |format|
       format.html # new.html.erb

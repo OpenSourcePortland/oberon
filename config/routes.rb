@@ -1,8 +1,11 @@
 Oberon::Application.routes.draw do
+
+  resources :characters    
+
   resources :profiles
+  
+  resources :ships
 
-
-  resources :characters
 
 
   # The priority is based upon order of creation:

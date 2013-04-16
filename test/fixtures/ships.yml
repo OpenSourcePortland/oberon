@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  character_id: 1
+  name: MyString
+  ship_type: MyString
+  price: 1
+  size: 1
+
+two:
+  character_id: 1
+  name: MyString
+  ship_type: MyString
+  price: 1
+  size: 1

@@ -81,8 +81,25 @@ class ShipsController < ApplicationController
     # MARK REVIEW: is this the best way to destroy ships? Need solution for admin stuff.
 
     respond_to do |format|
-      format.html { redirect_to character_ships_url(@character) } 
+      format.html { redirect_to ships_url } 
       format.json { head :no_content }
     end
+  end
+  
+  def ship_store
+    @ships = Ship.where(:character_id => nil)
+  end
+  
+  def buy
+    ship = Ship.find(params[:id])
+    character = Character.first  #MARK REVIEW: should we do this through session?
+    ship.character = character
+    ship.save!
+    
+    respond_to do |format|
+      format.html { redirect_to dashboard_path, notice: "purchased ship #{ship.name}"} 
+      format.json { head :no_content }
+    end
+    
   end
 end

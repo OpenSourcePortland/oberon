@@ -1,0 +1,10 @@
+<h1>Dashboard</h1>
+<p id="notice"><%= notice %></p>
+
+<p><%= @character.name %> </p>
+<p>Your ships</p>
+<ol>
+<% @character.ships.each do |ship| %>
+	<li><%=ship.name %></li>
+<% end %>
+</ol>

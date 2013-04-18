@@ -2,7 +2,7 @@ Oberon::Application.routes.draw do
 
   resources :characters 
 
-  resources :profiles
+  resource :profile
   
   resources :ships do
     member do

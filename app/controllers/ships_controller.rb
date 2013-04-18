@@ -93,8 +93,9 @@ class ShipsController < ApplicationController
   def buy
     ship = Ship.find(params[:id])
     character = Character.first  #MARK REVIEW: should we do this through session?
-    ship.character = character
-    ship.save!
+    character_ship = ship.dup
+    character_ship.character = character
+    character_ship.save!
     
     respond_to do |format|
       format.html { redirect_to dashboard_path, notice: "purchased ship #{ship.name}"} 

@@ -25,7 +25,7 @@ class CharactersController < ApplicationController
   # GET /characters/new.json
   def new
     @character = Character.new
-    # @profile = @character.profile || Profile.new
+    @profile = Profile.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,28 +36,24 @@ class CharactersController < ApplicationController
   # GET /characters/1/edit
   def edit
     @character = Character.find(params[:id])
+    @profile = @character.profile# || Profile.new
   end
 
   # POST /characters
   # POST /characters.json
-  
-  
-  # Mark Review: Help us, obi-wan.
+
   def create
     @character = Character.new(params[:character])
-    # @profile = Profile.new(params[:profile]
-    create_initial_ships
+    @profile = Profile.new(params[:profile])
+    #create_initial_ships
 
     respond_to do |format|
 
       if @character.save
+        @profile.character_id = @character.id
+        @profile.save!
         format.html { redirect_to ship_store_path, notice: 'Character was successfully created.' }
         format.json { render json: @character, status: :created, location: @character }
-        # @profile.character_id = @character.id
-        # 
-        # if @profile.save
-        #   format.html { redirect_to @character, notice: 'Profile was successfully created.' }
-        # end
       else
         format.html { render action: "new" }
         format.json { render json: @character.errors, status: :unprocessable_entity }
@@ -69,9 +65,11 @@ class CharactersController < ApplicationController
   # PUT /characters/1.json
   def update
     @character = Character.find(params[:id])
+    @profile = @character.profile# || Profile.new
 
     respond_to do |format|
       if @character.update_attributes(params[:character])
+        @profile.update_attributes((params[:profile]))
         format.html { redirect_to @character, notice: 'Character was successfully updated.' }
         format.json { head :no_content }
       else

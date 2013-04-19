@@ -52,7 +52,7 @@ class CharactersController < ApplicationController
       if @character.save
         @profile.character_id = @character.id
         @profile.save!
-        format.html { redirect_to ship_store_path, notice: 'Character was successfully created.' }
+        format.html { redirect_to dashboard_path, notice: 'Character was successfully created.' }
         format.json { render json: @character, status: :created, location: @character }
       else
         format.html { render action: "new" }
@@ -64,13 +64,15 @@ class CharactersController < ApplicationController
   # PUT /characters/1
   # PUT /characters/1.json
   def update
-    @character = Character.find(params[:id])
+    @character = Character.find_by_id(1)
+    
+    #@character = Character.find(params[:id])
     @profile = @character.profile# || Profile.new
 
     respond_to do |format|
       if @character.update_attributes(params[:character])
         @profile.update_attributes((params[:profile]))
-        format.html { redirect_to @character, notice: 'Character was successfully updated.' }
+        format.html { redirect_to dashboard_path, notice: 'Bam! Sucess!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -92,6 +94,6 @@ class CharactersController < ApplicationController
   end
   
   def dashboard
-    @character = Character.first
+    @character = Character.find_by_id(1)
   end
 end

@@ -11,14 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416172735) do
+ActiveRecord::Schema.define(:version => 20130419192950) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
     t.string   "gender"
     t.string   "species"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "location_id"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "name"
+    t.string   "location_type"
+    t.integer  "location_size"
+    t.integer  "spaceport_size"
+    t.integer  "coordinates"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "profiles", :force => true do |t|
@@ -42,12 +53,25 @@ ActiveRecord::Schema.define(:version => 20130416172735) do
     t.datetime "updated_at",                         :null => false
   end
 
+  create_table "properties", :force => true do |t|
+    t.string   "name"
+    t.string   "property_type"
+    t.integer  "resource_count"
+    t.integer  "output_rate"
+    t.boolean  "renewable"
+    t.integer  "location_id"
+    t.integer  "character_id"
+    t.integer  "price"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "ships", :force => true do |t|
     t.integer  "character_id"
     t.string   "name"
     t.string   "ship_type"
     t.integer  "price"
-    t.integer  "size"
+    t.integer  "ship_size"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

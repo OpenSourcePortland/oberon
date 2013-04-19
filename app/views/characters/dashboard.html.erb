@@ -8,3 +8,37 @@
 	<li><%=ship.name %></li>
 <% end %>
 </ol>
+
+
+<p>Your Location: <%= @character.location.name %> </p>
+
+
+<% if @character.ships.any? %>
+<p>Where would you like to travel to?</p>
+
+<%= form_for(@character) do |f| %>
+  <% if @character.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@character.errors.count, "error") %> prohibited this character from being saved:</h2>
+
+      <ul>
+      <% @character.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= collection_select(:character, :location_id, Location.all, :id, :name)%>
+  </div>
+  
+    <div class="actions">
+      <%= f.submit ">>>>>>  Travel  >>>>>>>" %>
+    </div>
+  <% end %>
+<% else %>
+  <p>You don't have a ship yet! Buy one at the <%= link_to "Ship Store", ship_store_path %>.
+
+<% end %>
+  

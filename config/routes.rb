@@ -1,5 +1,11 @@
 Oberon::Application.routes.draw do
 
+  resources :properties
+
+
+  resources :locations
+
+
   resources :characters 
 
   resource :profile

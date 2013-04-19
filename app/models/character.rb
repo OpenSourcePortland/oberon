@@ -1,8 +1,10 @@
 class Character < ActiveRecord::Base
-  attr_accessible :gender, :name, :species #:profile_attributes, :profiles_attributes
+  attr_accessible :gender, :name, :species, :location_id #:profile_attributes, :profiles_attributes
   
   has_one :profile
   has_many :ships
+  belongs_to :location
+  has_many :properties
   
   # accepts_nested_attributes_for :profile
 end

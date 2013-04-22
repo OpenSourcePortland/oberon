@@ -8,45 +8,29 @@
 
 Ship.create!(
   :name => 'falcon', 
-  :ship_type => 'fighter', 
-  :price => '500', 
-  :ship_size => '10'
 )
+
 Ship.create!(
   :name => 'firefly', 
-  :ship_type => 'miner', 
-  :price => '100', 
-  :ship_size => '30'
 )
+
 Ship.create!(
   :name => 'obergone', 
-  :ship_type => 'farmer', 
-  :price => '200', 
-  :ship_size => '40'
 )
             
 Location.create!(
   :name => "Earth",
-  :location_type => :blue_planet,
-  :location_size => 50,
-  :spaceport_size => 80,
-  :coordinates => 300
+  :category => :blue_planet,
 )
 
 Location.create!(
   :name => "Earth's Moon",
-  :location_type => :moon,
-  :location_size => 10,
-  :spaceport_size => 80,
-  :coordinates => 305
+  :category => :moon,
 )
 
 Location.create!(
   :name => "Mars",
-  :location_type => :red_planet,
-  :location_size => 30,
-  :spaceport_size => 80,
-  :coordinates => 350
+  :category => :red_planet,
 )            
 
 Property.create!(
@@ -59,21 +43,22 @@ Property.create!(
   :price => 4000
 )
 
-NUMBER_OF_USERS = 10
+NUMBER_OF_USERS = 100
 NUMBER_OF_USERS.times do |i|
+  puts "Working user #{i}" if i % 100 == 0
   c = Character.create(name: "Test User #{i}", species: "Human", location_id: 1)
-  c.create_profile(compassion_level: rand(101), 
-                      courage_level: rand(101), 
-                dependability_level: rand(101), 
-                    endurance_level: rand(101), 
-                      honesty_level: rand(101), 
-                        honor_level: rand(101), 
-                interpersonal_level: rand(101), 
-                   leadership_level: rand(101), 
-                    logistics_level: rand(101), 
-                   perception_level: rand(101), 
-                        pilot_level: rand(101), 
-                       reflex_level: rand(101), 
-                     tactical_level: rand(101), 
-                          wit_level: rand(101))
+  c.create_profile(compassion: rand(101), 
+                      courage: rand(101), 
+                dependability: rand(101), 
+                    endurance: rand(101), 
+                      honesty: rand(101), 
+                        honor: rand(101), 
+                     charisma: rand(101), 
+                   leadership: rand(101), 
+                    logistics: rand(101), 
+                   perception: rand(101), 
+                        pilot: rand(101), 
+                    quickness: rand(101), 
+                     tactical: rand(101), 
+                          wit: rand(101))
 end

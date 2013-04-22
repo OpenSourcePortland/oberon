@@ -25,66 +25,12 @@
   </div>
   <%= fields_for @profile do |f|%>
 
-	  <div class="field">
-	    <%= f.label :technical_level %><br />
-	    <%= f.number_field :technical_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :pilot_level %><br />
-	    <%= f.number_field :pilot_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :logistics_level %><br />
-	    <%= f.number_field :logistics_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :tactical_level %><br />
-	    <%= f.number_field :tactical_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :interpersonal_level %><br />
-	    <%= f.number_field :interpersonal_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :wit_level %><br />
-	    <%= f.number_field :wit_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :reflex_level %><br />
-	    <%= f.number_field :reflex_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :endurance_level %><br />
-	    <%= f.number_field :endurance_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :perception_level %><br />
-	    <%= f.number_field :perception_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :leadership_level %><br />
-	    <%= f.number_field :leadership_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :honesty_level %><br />
-	    <%= f.number_field :honesty_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :compassion_level %><br />
-	    <%= f.number_field :compassion_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :courage_level %><br />
-	    <%= f.number_field :courage_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :honor_level %><br />
-	    <%= f.number_field :honor_level %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :dependability_level %><br />
-	    <%= f.number_field :dependability_level %>
-	  </div>
+	  <% Profile::PLAYER_ATTRIBUTES.each do |attribute| %>
+      <div class="field">
+        <%= f.label attribute %>
+        <%= f.number_field attribute %>
+      </div>
+    <% end %>	  
    
    <% end %>
   
@@ -93,3 +39,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+

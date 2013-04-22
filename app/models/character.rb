@@ -6,6 +6,12 @@ class Character < ActiveRecord::Base
   belongs_to :location
   has_many :properties
   
+  PLAYER_ATTRIBUTES = [:compassion, :courage, :dependability,
+                       :endurance, :honesty, :honor,             
+                       :charisma, :leadership, :logistics, 
+                       :perception, :pilot, :quickness, 
+                       :tactical, :technical, :wit]
+
   # accepts_nested_attributes_for :profile
 end
 

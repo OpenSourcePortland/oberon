@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  attr_accessible :coordinates, :location_type, :name, :location_size, :spaceport_size
+  attr_accessible :category, :name
   
   has_many :properties
 end

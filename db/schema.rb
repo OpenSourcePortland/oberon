@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419192950) do
+ActiveRecord::Schema.define(:version => 20130422182130) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -24,33 +24,30 @@ ActiveRecord::Schema.define(:version => 20130419192950) do
 
   create_table "locations", :force => true do |t|
     t.string   "name"
-    t.string   "location_type"
-    t.integer  "location_size"
-    t.integer  "spaceport_size"
-    t.integer  "coordinates"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "category"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "profiles", :force => true do |t|
-    t.integer  "technical_level",     :default => 0
-    t.integer  "pilot_level",         :default => 0
-    t.integer  "logistics_level",     :default => 0
-    t.integer  "tactical_level",      :default => 0
-    t.integer  "interpersonal_level", :default => 0
-    t.integer  "wit_level",           :default => 0
-    t.integer  "reflex_level",        :default => 0
-    t.integer  "endurance_level",     :default => 0
-    t.integer  "perception_level",    :default => 0
-    t.integer  "leadership_level",    :default => 0
-    t.integer  "honesty_level",       :default => 0
-    t.integer  "compassion_level",    :default => 0
-    t.integer  "courage_level",       :default => 0
-    t.integer  "honor_level",         :default => 0
-    t.integer  "dependability_level", :default => 0
+    t.integer  "technical",     :default => 0
+    t.integer  "pilot",         :default => 0
+    t.integer  "logistics",     :default => 0
+    t.integer  "tactical",      :default => 0
+    t.integer  "charisma",      :default => 0
+    t.integer  "wit",           :default => 0
+    t.integer  "quickness",     :default => 0
+    t.integer  "endurance",     :default => 0
+    t.integer  "perception",    :default => 0
+    t.integer  "leadership",    :default => 0
+    t.integer  "honesty",       :default => 0
+    t.integer  "compassion",    :default => 0
+    t.integer  "courage",       :default => 0
+    t.integer  "honor",         :default => 0
+    t.integer  "dependability", :default => 0
     t.integer  "character_id"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "properties", :force => true do |t|
@@ -69,11 +66,11 @@ ActiveRecord::Schema.define(:version => 20130419192950) do
   create_table "ships", :force => true do |t|
     t.integer  "character_id"
     t.string   "name"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "ship_type"
     t.integer  "price"
     t.integer  "ship_size"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
   end
 
 end

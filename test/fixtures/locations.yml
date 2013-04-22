@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  location_type: MyString
+  size: 1
+  spaceport_size: 1
+  coordinates: 1
+
+two:
+  name: MyString
+  location_type: MyString
+  size: 1
+  spaceport_size: 1
+  coordinates: 1

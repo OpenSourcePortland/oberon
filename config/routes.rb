@@ -1,10 +1,23 @@
 Oberon::Application.routes.draw do
 
-  resources :characters    
+  resources :properties
 
-  resources :profiles
+
+  resources :locations
+
+
+  resources :characters 
+
+  resource :profile
   
-  resources :ships
+  resources :ships do
+    member do
+      post 'buy'
+    end
+  end
+  
+  match '/ship_store' => 'ships#ship_store', :as => :ship_store
+  match '/dashboard' => 'characters#dashboard', :as => :dashboard
 
 
 

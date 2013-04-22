@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @property.name %>
+</p>
+
+<p>
+  <b>Property type:</b>
+  <%= @property.property_type %>
+</p>
+
+<p>
+  <b>Resource count:</b>
+  <%= @property.resource_count %>
+</p>
+
+<p>
+  <b>Output rate:</b>
+  <%= @property.output_rate %>
+</p>
+
+<p>
+  <b>Renewable:</b>
+  <%= @property.renewable %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @property.location_id %>
+</p>
+
+<p>
+  <b>Character:</b>
+  <%= @property.character_id %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @property.price %>
+</p>
+
+
+<%= link_to 'Edit', edit_property_path(@property) %> |
+<%= link_to 'Back', properties_path %>

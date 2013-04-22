@@ -23,7 +23,20 @@
     <%= f.label :species %><br />
     <%= f.text_field :species %>
   </div>
+  <%= fields_for @profile do |f|%>
+
+	  <% Profile::PLAYER_ATTRIBUTES.each do |attribute| %>
+      <div class="field">
+        <%= f.label attribute %>
+        <%= f.number_field attribute %>
+      </div>
+    <% end %>	  
+   
+   <% end %>
+  
+  
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

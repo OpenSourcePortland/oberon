@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @location.name %>
+</p>
+
+<p>
+  <b>Location type:</b>
+  <%= @location.location_type %>
+</p>
+
+<p>
+  <b>Size:</b>
+  <%= @location.location_size %>
+</p>
+
+<p>
+  <b>Spaceport size:</b>
+  <%= @location.spaceport_size %>
+</p>
+
+<p>
+  <b>Coordinates:</b>
+  <%= @location.coordinates %>
+</p>
+
+
+<h3>Properties Available:</h3>
+<ol>
+<% @location.properties.each do |property| %>
+<li><%= property.name %> | Resource Type: <%= property.property_type%> | Resources Available: <%= property.resource_count %> | Price: <%= property.price %></li>
+<% end %>
+</ol>

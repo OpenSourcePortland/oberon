@@ -1,0 +1,17 @@
+<h1>Amazing Ship Store!</h1>
+<p id="notice"><%= notice %></p>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+
+<% @ships.each do |ship| %>
+  <tr>
+    <td><%= ship.name %></td>
+    <td><%= button_to 'buy', :action => "buy", :id => ship.id %></td>
+
+  </tr>
+<% end %>
+</table>

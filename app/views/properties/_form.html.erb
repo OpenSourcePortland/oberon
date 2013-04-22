@@ -1,0 +1,49 @@
+<%= form_for(@property) do |f| %>
+  <% if @property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+      <% @property.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :property_type %><br />
+    <%= f.text_field :property_type %>
+  </div>
+  <div class="field">
+    <%= f.label :resource_count %><br />
+    <%= f.number_field :resource_count %>
+  </div>
+  <div class="field">
+    <%= f.label :output_rate %><br />
+    <%= f.number_field :output_rate %>
+  </div>
+  <div class="field">
+    <%= f.label :renewable %><br />
+    <%= f.check_box :renewable %>
+  </div>
+  <div class="field">
+    <%= f.label :location_id %><br />
+    <%= f.number_field :location_id %>
+  </div>
+  <div class="field">
+    <%= f.label :character_id %><br />
+    <%= f.number_field :character_id %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br />
+    <%= f.number_field :price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

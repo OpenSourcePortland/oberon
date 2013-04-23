@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 
 #gem 'sqlite3'
 gem 'pg'
-
+gem 'newrelic_rpm'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,7 +27,11 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'rack-mini-profiler'
+  gem 'fabrication'
+  gem 'simplecov', :require => false
+  gem 'rspec-rails'
 end
+
 
 
 # To use ActiveModel has_secure_password

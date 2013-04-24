@@ -42,4 +42,8 @@ describe ShipsController do
 
     assert_redirected_to ships_path
   end
+  
+  it "should buy a ship for a character" do
+    pending
+  end
 end

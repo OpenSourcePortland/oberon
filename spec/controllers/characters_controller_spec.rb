@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 describe CharactersController do
-    fixtures :characters
-
+  
   before(:each) do
-    @character = characters(:one)
+    @character = Fabricate(:character)
   end
 
   it "should get index" do
@@ -44,5 +43,9 @@ describe CharactersController do
     expect {delete :destroy, id: @character}.to change{Character.count}.by(-1)
 
     assert_redirected_to characters_path
+  end
+  
+  it "should find user by session" do
+    pending
   end
 end

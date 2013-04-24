@@ -5,7 +5,7 @@ class RemoveShipFields < ActiveRecord::Migration
     remove_column :ships, :ship_size
   end 
 
-  def up
+  def down
     add_column :ships, :ship_type, :string
     add_column :ships, :price, :integer
     add_column :ships, :ship_size, :integer

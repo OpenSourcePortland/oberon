@@ -1,5 +1,9 @@
 Oberon::Application.routes.draw do
 
+  get "sessions/create"
+
+  get "session/create"
+
   resources :properties
 
 
@@ -16,9 +20,12 @@ Oberon::Application.routes.draw do
     end
   end
   
-  match '/ship_store' => 'ships#ship_store', :as => :ship_store
-  match '/dashboard' => 'characters#dashboard', :as => :dashboard
-
+  match '/ship_store' => 'ships#ship_store', as: 'ship_store'
+  match '/dashboard' => 'characters#dashboard', as: 'dashboard'
+  match 'auth/twitter/callback', to: 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
+  
 
 
   # The priority is based upon order of creation:
@@ -70,7 +77,7 @@ Oberon::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'characters#dashboard'
 
   # See how all your routes lay out with "rake routes"
 

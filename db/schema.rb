@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507170910) do
+ActiveRecord::Schema.define(:version => 20130507180455) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -67,8 +67,9 @@ ActiveRecord::Schema.define(:version => 20130507170910) do
   create_table "ships", :force => true do |t|
     t.integer  "character_id"
     t.string   "name"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "fuel",         :default => 0
   end
 
   create_table "users", :force => true do |t|

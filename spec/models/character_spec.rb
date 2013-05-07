@@ -14,10 +14,9 @@ describe Character do
   end
   
   it "should end game when turns_spent equals PLAYER_TURNS" do
+    expect(@character.game_over?).to be_false
     @character.turns_spent = Character::PLAYER_TURNS
     expect(@character.game_over?).to be_true
   end
-  
-  it 
-  
+    
 end

@@ -17,7 +17,7 @@ describe LocationsController do
   end
 
   it "should create location" do
-    expect{post :create, location: { category: @location.category, name: @location.name }}.to change{Location.count}.by(1)
+    expect{post :create, location: { category: @location.category, name: @location.name, x: 1, y: 1, z: 1 }}.to change{Location.count}.by(1)
     
     assert_redirected_to location_path(assigns(:location))
   end

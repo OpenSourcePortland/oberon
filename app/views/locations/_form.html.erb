@@ -16,21 +16,18 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :location_type %><br />
-    <%= f.text_field :location_type %>
+    <%= f.label :x_coordinate %><br />
+    <%= f.text_field :x %>
   </div>
   <div class="field">
-    <%= f.label :location_size %><br />
-    <%= f.number_field :location_size %>
+    <%= f.label :y_coordinate %><br />
+    <%= f.text_field :y %>
   </div>
   <div class="field">
-    <%= f.label :spaceport_size %><br />
-    <%= f.number_field :spaceport_size %>
+    <%= f.label :z_coordinate %><br />
+    <%= f.text_field :z %>
   </div>
-  <div class="field">
-    <%= f.label :coordinates %><br />
-    <%= f.number_field :coordinates %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

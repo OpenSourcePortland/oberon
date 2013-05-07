@@ -20,5 +20,13 @@ describe Ship do
     expect(@ship.enough_fuel?(10)).to be_false
   end  
   
+  it "should calculate fuel usage" do
+    expect(@ship.calc_fuel_usage(200)).to eq(2) 
+  end
+  
+  it "should decrease fuel by proper amount when traveling" do
+    expect{@ship.fly(200)}.to change{@ship.fuel}.by(-2)
+  end
+  
   
 end

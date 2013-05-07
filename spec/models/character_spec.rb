@@ -6,7 +6,7 @@ describe Character do
   end
   
   it "should increase turns_spent by one each turn" do
-    expect{@character.increment_turn}.to change{@character.turns_spent}.by(1)
+    expect{@character.increment_turn(1)}.to change{@character.turns_spent}.by(1)
   end
   
   it "should calculate turns_remaining" do

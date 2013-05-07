@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(:version => 20130507180455) do
     t.string   "category"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "x"
+    t.integer  "y"
+    t.integer  "z"
   end
 
   create_table "profiles", :force => true do |t|
@@ -69,15 +72,10 @@ ActiveRecord::Schema.define(:version => 20130507180455) do
     t.string   "name"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.string   "ship_type"
+    t.integer  "price"
+    t.integer  "ship_size"
     t.integer  "fuel",         :default => 0
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
 end

@@ -14,8 +14,8 @@ class Character < ActiveRecord::Base
                        
   PLAYER_TURNS = 2016
   
-  def increment_turn
-    self.turns_spent += 1
+  def increment_turn(turns)
+    self.turns_spent += turns
   end
   
   def turns_remaining

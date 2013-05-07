@@ -19,7 +19,22 @@ class Ship < ActiveRecord::Base
   
   def fly(distance)
     fuel_used = calc_fuel_usage(distance)
-    self.fuel -= fuel_used
+    if enough_fuel?(fuel_used)
+      self.fuel -= fuel_used
+      true
+    else
+      false
+    end
   end
+
+  # hard error version of the fly method - may want to use this later
+  # def fly!(distance)
+  #   fuel_used = calc_fuel_usage(distance)
+  #   if enough_fuel?(fuel_used)
+  #     self.fuel -= fuel_used
+  #   else
+  #     raise "not enough fuel"
+  #   end
+  # end  
   
 end

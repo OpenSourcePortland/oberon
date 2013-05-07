@@ -15,15 +15,15 @@ describe Location do
   end
   
   it "should calculate the distance between two locations" do
-    @location1.distance(@location2).should == 9
+    @location1.distance_to(@location2).should == 9
   end
   
   it "should calculate the distance between two negative coordinate sets" do
-    @location3.distance(@location4).should == 4996
+    @location3.distance_to(@location4).should == 4996
   end
   
   it "should calculate the distance between two a negative and positive coordinate set" do
-    @location2.distance(@location4).should == 23
+    @location2.distance_to(@location4).should == 23
   end
   
 end

@@ -5,7 +5,7 @@ class Location < ActiveRecord::Base
   
   validates :x, :y, :z, :presence => true
   
-  def distance(destination)
+  def distance_to(destination)
     a = self.x - destination.x
     b = self.y - destination.y
     c = self.z - destination.z

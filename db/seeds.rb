@@ -62,6 +62,27 @@ Shop.create!(
   :location_id => 2
 )
 
+ShopInventoryItem.create!(
+  :material => :food,
+  :shop_id => 1,
+  :buy_price => 50,
+  :sell_price => 75
+)
+
+ShopInventoryItem.create!(
+  :material => :fuel,
+  :shop_id => 1,
+  :buy_price => 25,
+  :sell_price => 50
+)
+
+ShopInventoryItem.create!(
+  :material => :food,
+  :shop_id => 2,
+  :buy_price => 75,
+  :sell_price => 150
+)
+
 NUMBER_OF_USERS = 100
 NUMBER_OF_USERS.times do |i|
   puts "Working user #{i}" if i % 100 == 0

@@ -1,5 +1,8 @@
 Oberon::Application.routes.draw do
 
+  resources :shop_inventory_items
+
+
   resources :shops
 
 

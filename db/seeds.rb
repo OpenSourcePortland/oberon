@@ -21,16 +21,25 @@ Ship.create!(
 Location.create!(
   :name => "Earth",
   :category => :blue_planet,
+  :x => 0,
+  :y => 0,
+  :z => 0
 )
 
 Location.create!(
   :name => "Earth's Moon",
   :category => :moon,
+  :x => 50,
+  :y => 50,
+  :z => 50
 )
 
 Location.create!(
   :name => "Mars",
   :category => :red_planet,
+  :x => 800,
+  :y => 300,
+  :z => 1400
 )            
 
 Property.create!(
@@ -41,6 +50,16 @@ Property.create!(
   :renewable => false,
   :location_id => 3,
   :price => 4000
+)
+
+Shop.create!(
+  :name => "Space Emporium",
+  :location_id => 1
+)
+
+Shop.create!(
+  :name => "Galactic Space Mattress Super Store",
+  :location_id => 2
 )
 
 NUMBER_OF_USERS = 100

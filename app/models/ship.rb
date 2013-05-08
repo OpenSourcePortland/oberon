@@ -14,14 +14,14 @@ class Ship < ActiveRecord::Base
   end
   
   def calc_fuel_usage(distance)
-    distance / DISTANCE_PER_FUEL_UNIT
+    (distance.to_f / DISTANCE_PER_FUEL_UNIT).ceil
   end
   
   def fly(distance)
     fuel_used = calc_fuel_usage(distance)
     if enough_fuel?(fuel_used)
       self.fuel -= fuel_used
-      true
+      self.save!
     else
       false
     end

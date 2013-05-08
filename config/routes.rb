@@ -10,7 +10,11 @@ Oberon::Application.routes.draw do
   resources :locations
 
 
-  resources :characters 
+  resources :characters do
+    member do
+      post 'travel'
+    end
+  end
 
   resource :profile
   

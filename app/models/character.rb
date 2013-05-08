@@ -11,6 +11,19 @@ class Character < ActiveRecord::Base
                        :charisma, :leadership, :logistics, 
                        :perception, :pilot, :quickness, 
                        :tactical, :technical, :wit]
+                       
+  PLAYER_TURNS = 2016
+  
+  def increment_turn(turns)
+    self.turns_spent += turns
+  end
+  
+  def turns_remaining
+    PLAYER_TURNS - self.turns_spent
+  end
+  
+  def game_over?
+    turns_remaining == 0 #true
+  end
 
-  # accepts_nested_attributes_for :profile
 end

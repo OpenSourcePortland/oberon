@@ -11,15 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425173359) do
+
+ActiveRecord::Schema.define(:version => 20130507180455) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
     t.string   "gender"
     t.string   "species"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "location_id"
+    t.integer  "turns_spent", :default => 0
   end
 
   create_table "locations", :force => true do |t|
@@ -69,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20130425173359) do
   create_table "ships", :force => true do |t|
     t.integer  "character_id"
     t.string   "name"
+<<<<<<< HEAD
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -79,6 +82,14 @@ ActiveRecord::Schema.define(:version => 20130425173359) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+=======
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.string   "ship_type"
+    t.integer  "price"
+    t.integer  "ship_size"
+    t.integer  "fuel",         :default => 0
+>>>>>>> add_turns
   end
 
 end

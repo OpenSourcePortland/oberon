@@ -8,29 +8,41 @@
 
 Ship.create!(
   :name => 'falcon', 
+  :fuel => 1
 )
 
 Ship.create!(
   :name => 'firefly', 
+  :fuel => 1
 )
 
 Ship.create!(
   :name => 'obergone', 
+  :fuel => 1
 )
             
 Location.create!(
   :name => "Earth",
   :category => :blue_planet,
+  :x => 1,
+  :y => 1,
+  :z => 1
 )
 
 Location.create!(
   :name => "Earth's Moon",
   :category => :moon,
+  :x => 10,
+  :y => 10,
+  :z => 10
 )
 
 Location.create!(
   :name => "Mars",
   :category => :red_planet,
+  :x => 100,
+  :y => 100,
+  :z => 100
 )            
 
 Property.create!(

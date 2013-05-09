@@ -73,5 +73,22 @@ class CharactersController < ApplicationController
   
   def dashboard
     @character = Character.find_by_id(1)
+    @locations = Location.where("id != ?", @character.location.id)
+  end
+  
+  def travel
+    @character = Character.find params[:id]
+    @destination = Location.find params[:dest_id]
+    distance = params[:distance]
+    if @character.ship.fly(distance)
+      @character.travel(@destination)
+      respond_to do |format|
+        format.html { redirect_to dashboard_path, notice: 'Bam! Sucess!' }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to dashboard_path, notice: "You don't have enough fuel" }
+      end
+    end
   end
 end

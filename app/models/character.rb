@@ -13,10 +13,13 @@ class Character < ActiveRecord::Base
                        :tactical, :technical, :wit]
                        
   PLAYER_TURNS = 2016
-  DISTANCE_PER_TURN = 100
-  
+
   def increment_turn(turns)
     self.turns_spent += turns
+  end
+
+  def current_ship
+    ship
   end
   
   def turns_remaining
@@ -26,17 +29,13 @@ class Character < ActiveRecord::Base
   def game_over?
     turns_remaining == 0 #true
   end
-  
-  def calc_turns_required(distance)
-    (distance.to_f / DISTANCE_PER_TURN).ceil
-  end
-  
+
   def enough_turns?(turns_required)
     turns_remaining >= turns_required
   end
   
-  def travel(destination, distance)
-    turns_required = calc_turns_required(distance)
+  def travel(destination)
+    turns_required = current_ship.time_to_travel_to(destination)
     if enough_turns?(turns_required)
       increment_turn(turns_required)
       self.location = destination

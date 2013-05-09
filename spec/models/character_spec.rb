@@ -3,7 +3,9 @@ require 'spec_helper'
 describe Character do
   before(:each) do
     @character = Fabricate(:character)
-    @destination = Fabricate(:location)
+    @destination = Fabricate(:location, x: 100, y: 0, z: 0)
+    @ship = Fabricate(:ship)
+    @ship.update_attributes(character_id: @character.id)
   end
   
   it "should increase turns_spent by one each turn" do
@@ -20,10 +22,6 @@ describe Character do
     expect(@character.game_over?).to be_true
   end
   
-  it "should calculate turns used for traveling distance" do
-    expect(@character.calc_turns_required(100)).to eq(1)
-  end
-  
   it "#enough_turns? should return false if the player does not have enough turns" do
     @character.turns_spent = 2007
     expect(@character.enough_turns?(10)).to be_false
@@ -31,17 +29,17 @@ describe Character do
   
   it "should decrease turns by proper amount when traveling" do
     @character.turns_spent = 0
-    expect{@character.travel(@destination, 100)}.to change{@character.turns_spent}.by(1)
+    expect{@character.travel(@destination)}.to change{@character.turns_spent}.by(1)
   end
   
   it "should return false if there are not enough turns to travel the distance" do
     @character.turns_spent = 2016
-    expect(@character.travel(@destination, 100)).to be_false
+    expect(@character.travel(@destination)).to be_false
   end
   
   it "should update the location when traveling" do
     @character.turns_spent = 0
-    @character.travel(@destination, 100)
+    @character.travel(@destination)
     expect(@character.location).to be(@destination)
   end
 end

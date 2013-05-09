@@ -12,9 +12,9 @@
 
 
 
-<% if @character.ship %>
-<p>Your ship: <%= @character.ship.name %>
-<br>Your Fuel: <%= @character.ship.fuel %>
+<% if current_ship %>
+<p>Your ship: <%= current_ship.name %>
+<br>Your Fuel: <%= current_ship.fuel %>
 <br>Turns Left: <%= @character.turns_remaining %>
 </p>
 <p>Where would you like to travel to?</p>
@@ -27,18 +27,15 @@
 	    <th>Turns Required</th>
 	    <th>Enough Turns?</th>
 	    <th>Travel</th>
-	  </tr>  
+	  </tr>
 		<% @locations.each do |destination| %>
-  		<% distance = @character.location.distance_to(destination) %>
-  		<% fuel_needed = @character.ship.calc_fuel_usage(distance) %>
-  		<% turns_required = @character.calc_turns_required(distance) %>
   		<tr>
   			<td><%= destination.name %></td>
-  			<td><%= distance %></td>
-  			<td><%= fuel_needed %></td>
-  			<td><%= @character.ship.enough_fuel?(fuel_needed) %></td>
-  			<td><%= turns_required %></td>
-  			<td><%= @character.enough_turns?(turns_required) %></td>
+  			<td><%= current_ship.distance_to(destination) %></td>
+  			<td><%= current_ship.fuel_needed_to(destination) %></td>
+  			<td><%= current_ship.can_get_to?(destination) %></td>
+  			<td><%= @time_required = current_ship.time_to_travel_to(destination) %></td>
+  			<td><%= @character.enough_turns?(@time_required) %></td>
   			<td><%= button_to "Travel", :action => "travel", :id => @character.id, :dest_id => destination.id, :distance => distance %></td>
   		</td>
 		<% end %>	  

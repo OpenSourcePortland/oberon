@@ -81,7 +81,7 @@ class CharactersController < ApplicationController
     @destination = Location.find params[:dest_id]
     distance = params[:distance]
     if @character.ship.fly(distance)
-      @character.travel(@destination, distance)
+      @character.travel(@destination)
       respond_to do |format|
         format.html { redirect_to dashboard_path, notice: 'Bam! Sucess!' }
       end

@@ -4,11 +4,32 @@ class Ship < ActiveRecord::Base
   belongs_to :character
   
   DISTANCE_PER_FUEL_UNIT = 100
-  
+  DISTANCE_PER_TURN = 100
+
   def decrease_fuel(units)
     self.fuel -= units
   end
   
+  def location
+    character.location
+  end
+
+  def distance_to(destination)
+    location.distance_to(destination)
+  end
+
+  def fuel_needed_to(destination)
+    calc_fuel_usage(distance_to(destination))
+  end
+
+  def can_get_to?(destination)
+    fuel_needed_to(destination) <= self.fuel
+  end
+
+  def time_to_travel_to(destination)
+    (distance_to(destination).to_f / DISTANCE_PER_TURN).ceil
+  end
+
   def enough_fuel?(units)
     self.fuel >= units
   end

@@ -1,0 +1,29 @@
+<h1>Listing shop_inventory_items</h1>
+
+<table>
+  <tr>
+    <th>Shop</th>
+    <th>Material</th>
+    <th>Buy price</th>
+    <th>Sell price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shop_inventory_items.each do |shop_inventory_item| %>
+  <tr>
+    <td><%= shop_inventory_item.shop_id %></td>
+    <td><%= shop_inventory_item.material %></td>
+    <td><%= shop_inventory_item.buy_price %></td>
+    <td><%= shop_inventory_item.sell_price %></td>
+    <td><%= link_to 'Show', shop_inventory_item %></td>
+    <td><%= link_to 'Edit', edit_shop_inventory_item_path(shop_inventory_item) %></td>
+    <td><%= link_to 'Destroy', shop_inventory_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shop inventory item', new_shop_inventory_item_path %>

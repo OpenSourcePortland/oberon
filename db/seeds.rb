@@ -62,25 +62,41 @@ Shop.create!(
   :location_id => 2
 )
 
+Good.create!(
+  :name => "food"
+)
+
+Good.create!(
+  :name => "fuel"
+)
+
+Good.create!(
+  :name => "gold"
+)
+
 ShopInventoryItem.create!(
-  :material => :food,
+  :good_id => 1,
   :shop_id => 1,
   :buy_price => 50,
-  :sell_price => 75
+  :sell_price => 75,
+  :quantity => 100
 )
 
 ShopInventoryItem.create!(
-  :material => :fuel,
+  :good_id => 2,
   :shop_id => 1,
   :buy_price => 25,
-  :sell_price => 50
+  :sell_price => 50,
+  :quantity => 100
+  
 )
 
 ShopInventoryItem.create!(
-  :material => :food,
+  :good_id => 3,
   :shop_id => 2,
   :buy_price => 75,
-  :sell_price => 150
+  :sell_price => 150,
+  :quantity => 0
 )
 
 NUMBER_OF_USERS = 100

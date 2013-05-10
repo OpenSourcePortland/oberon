@@ -55,6 +55,53 @@ Property.create!(
   :price => 4000
 )
 
+# Material.create!(
+#   :property_id => 1,
+#   :good_id => 1,
+#   :output_rate => 3,
+#   :quantity => 5000,
+#   :renewable => false
+# )
+# 
+# Material.create!(
+#   :property_id => 1,
+#   :good_id => 3,
+#   :output_rate => 3,
+#   :quantity => 5000,
+#   :renewable => false
+# )
+# 
+# Material.create!(
+#   :property_id => 1,
+#   :good_id => 2,
+#   :output_rate => 3,
+#   :quantity => 0,
+#   :renewable => true
+# )
+
+NUMBER_OF_PROPERTY_MATERIALS = 100
+NUMBER_OF_PROPERTY_MATERIALS.times do |i|
+  Material.create!(
+    :property_id => 1,
+    :good_id => i,
+    :output_rate => 3,
+    :quantity => 0,
+    :renewable => true
+  )
+end
+
+NUMBER_OF_MATERIALS = 500
+NUMBER_OF_MATERIALS.times do |i|
+  Material.create!(
+    :property_id => rand(500),
+    :good_id => 100 + i,
+    :output_rate => 3,
+    :quantity => 0,
+    :renewable => true
+  )
+end
+
+
 NUMBER_OF_USERS = 100
 NUMBER_OF_USERS.times do |i|
   puts "Working user #{i}" if i % 100 == 0

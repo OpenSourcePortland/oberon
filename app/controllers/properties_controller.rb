@@ -8,7 +8,8 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.find(params[:id])
+    @property = Property.find(params[:id]) #, :include => :materials)
+    @materials = @property.materials
 
     respond_to do |format|
       format.html 

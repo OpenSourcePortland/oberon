@@ -1,5 +1,8 @@
 Oberon::Application.routes.draw do
 
+  resources :materials
+
+
   get "sessions/create"
 
   get "session/create"

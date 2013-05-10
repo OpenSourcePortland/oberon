@@ -3,4 +3,5 @@ class Property < ActiveRecord::Base
   
   belongs_to :location
   belongs_to :character
+  has_many :materials
 end

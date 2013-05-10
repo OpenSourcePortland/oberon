@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510190223) do
+ActiveRecord::Schema.define(:version => 20130510213005) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -72,15 +72,11 @@ ActiveRecord::Schema.define(:version => 20130510190223) do
 
   create_table "properties", :force => true do |t|
     t.string   "name"
-    t.string   "property_type"
-    t.integer  "resource_count"
-    t.integer  "output_rate"
-    t.boolean  "renewable"
     t.integer  "location_id"
     t.integer  "character_id"
     t.integer  "price"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "ships", :force => true do |t|
@@ -88,6 +84,9 @@ ActiveRecord::Schema.define(:version => 20130510190223) do
     t.string   "name"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.string   "ship_type"
+    t.integer  "price"
+    t.integer  "ship_size"
     t.integer  "fuel",         :default => 0
   end
 

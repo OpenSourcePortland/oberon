@@ -59,4 +59,5 @@ class LocationsController < ApplicationController
       format.html { redirect_to locations_url }
     end
   end
+  
 end

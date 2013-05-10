@@ -60,4 +60,21 @@ class PropertiesController < ApplicationController
       format.html { redirect_to properties_url }
     end
   end
+  
+  def assign
+   character = Character.first
+   @property = Property.find(params[:id])
+   if @property.character
+     respond_to do |format|
+       format.html { redirect_to @property.location, notice: 'This property is already claimed by another player!' }
+     end
+   else
+     @property.character = character
+     @property.save!
+     respond_to do |format|
+       format.html { redirect_to @property.location, notice: 'Bam, Success!' }
+     end
+    end
+  end
+  
 end

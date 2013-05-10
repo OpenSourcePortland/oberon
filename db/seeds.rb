@@ -47,10 +47,18 @@ Location.create!(
 
 Property.create!(
   :name => "Olympus Fields",
-  :property_type => :mining,
-  :resource_count => 3000,
-  :output_rate => 1,
-  :renewable => false,
+  :location_id => 3,
+  :price => 4000
+)
+
+Property.create!(
+  :name => "Gold Mountain",
+  :location_id => 3,
+  :price => 5000
+)
+
+Property.create!(
+  :name => "Iron Ore lake",
   :location_id => 3,
   :price => 4000
 )

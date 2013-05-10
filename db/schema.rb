@@ -78,9 +78,6 @@ ActiveRecord::Schema.define(:version => 20130509212002) do
     t.string   "name"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
-    t.string   "ship_type"
-    t.integer  "price"
-    t.integer  "ship_size"
     t.integer  "fuel",         :default => 0
   end
 

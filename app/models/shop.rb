@@ -15,21 +15,18 @@ class Shop < ActiveRecord::Base
   end
   
   def sell_price_of(good)
+    shop_inventory_items.find_by_good_id(good.id).sell_price
   end
   
   def quantity_of(good)
+    shop_inventory_items.find_by_good_id(good.id).quantity
   end
   
   def trades_in?(good)
+    shop_inventory_items.find_by_good_id(good.id)
   end
   
   def has_stock_of?(good)
+    shop_inventory_items.find_by_good_id(good.id) && shop_inventory_items.find_by_good_id(good.id).quantity > 0
   end
-  
-  def sell(good, quantity)
-  end
-  
-  def buy(good, quantity)
-  end
-  
 end

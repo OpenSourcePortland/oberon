@@ -60,4 +60,16 @@ class PropertiesController < ApplicationController
       format.html { redirect_to properties_url }
     end
   end
+  
+  def assign
+   character = Character.first
+   @property = Property.find(params[:id])
+   @property.character = character
+   @property.save!
+   
+    respond_to do |format|
+      format.html { redirect_to @property.location }
+    end
+  end
+  
 end

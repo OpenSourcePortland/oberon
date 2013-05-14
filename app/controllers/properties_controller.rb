@@ -64,6 +64,7 @@ class PropertiesController < ApplicationController
   def assign
    character = Character.first
    @property = Property.find(params[:id])
+
    if @property.character
      respond_to do |format|
        format.html { redirect_to @property.location, notice: 'This property is already claimed by another player!' }

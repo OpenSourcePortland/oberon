@@ -6,26 +6,6 @@
 </p>
 
 <p>
-  <b>Property type:</b>
-  <%= @property.property_type %>
-</p>
-
-<p>
-  <b>Resource count:</b>
-  <%= @property.resource_count %>
-</p>
-
-<p>
-  <b>Output rate:</b>
-  <%= @property.output_rate %>
-</p>
-
-<p>
-  <b>Renewable:</b>
-  <%= @property.renewable %>
-</p>
-
-<p>
   <b>Location:</b>
   <%= @property.location_id %>
 </p>
@@ -39,6 +19,45 @@
   <b>Price:</b>
   <%= @property.price %>
 </p>
+
+<h2>Materials Available For Exploiting:</h2>
+<table>
+  <hr>
+    <td>
+      Material
+    </td>
+    <td>
+      Output Rate
+    </td>
+    <td>
+      Quantity
+    </td>
+  </hr>
+  <% @materials.each do |material| %>
+    <tr>
+      <td>
+        <%= material.good_id %>
+      </td>
+      <td>
+        <%= material.output_rate %>
+      </td>
+      <td>
+        <% if material.renewable? %>
+          Renewable
+        <% else %>
+          <%= material.quantity %>
+        <% end %>
+      </td>
+      
+    </tr>
+        
+    
+  <% end %>
+  
+</table>
+
+  
+  
 
 
 <%= link_to 'Edit', edit_property_path(@property) %> |

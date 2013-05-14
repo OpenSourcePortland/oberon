@@ -8,8 +8,19 @@
 
 
 <h3>Properties Available:</h3>
-<ol>
-<% @location.properties.each do |property| %>
-<li><%= property.name %> | Resource Type: <%= property.property_type%> | Resources Available: <%= property.resource_count %> | Price: <%= property.price %></li>
-<% end %>
-</ol>
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Price</td>
+    <td>Status</td>
+    <td>Action</td>
+  </tr>  
+  <% @location.properties.each do |property| %>
+    <tr>
+      <td><%= property.name %></td>
+      <td><%= property.price %></td>
+      <td><%= property.status %></td>
+      <td><%= (button_to "Claim", :controller => "properties", :action => "assign", :id => property.id) unless property.claimed? %></td>
+    </tr>
+  <% end %>
+</table>

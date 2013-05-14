@@ -1,10 +1,17 @@
 Oberon::Application.routes.draw do
 
+  resources :materials
+
+
   get "sessions/create"
 
   get "session/create"
 
-  resources :properties
+  resources :properties do
+    member do
+      post 'assign'
+    end
+  end
 
 
   resources :locations

@@ -11,8 +11,12 @@ describe Shop do
     
   end
   
+  let(:character) { Fabricate(:character) }
+  
   it "#stock should add an inventory item to the shop" do
-    expect(@shop.goods.first).to eq(@good)
+    @random_good = Fabricate(:good)
+    @shop.stock(@random_good, 10, 50, 100)
+    expect(@shop.has_stock_of?(@random_good)).to be_true
   end
   
   it "#buy_price_of should return the correct buy_price for that item" do
@@ -41,6 +45,22 @@ describe Shop do
   
   it "#has_stock_of? should return false if item is out of stock or shop does not trade in that item" do
     expect(@shop.has_stock_of?(@not_in_stock)).to be_false
+  end
+    
+  it "#sell should reduce quantity of item by quantity" do
+    expect{@shop.sell(character, @good, 10)}.to change{@shop.quantity_of(@good)}.by(-10)  
+  end
+  
+  it "#buy should increase quantity of item by quantity" do
+    expect{@shop.buy(character, @good, 10)}.to change{@shop.quantity_of(@good)}.by(10)  
+  end    
+  
+  it "#sell should increase the character's quantity of item by quantity" do
+    pending
+  end
+  
+  it "#buy should reduce the character's quantity of item by quantity" do
+    pending
   end
     
 end

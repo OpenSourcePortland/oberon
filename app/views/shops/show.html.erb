@@ -11,5 +11,22 @@
 </p>
 
 
+<h3>Shop Items:</h3>
+  <% @shop.shop_inventory_items.each do |item| %>
+    <b><%= item.good.name %></b>  | In Stock: <%= item.quantity %> | Purchase Price: <%= item.sell_price %>  | Trade In Price: <%= item.buy_price %>    <br />
+    <%= form_tag(:controller => "shops", :action => "sell_to_character", :item_id => item.id) do %>
+      <%= label_tag(:quantity, "Quantity:") %>
+      <%= number_field_tag(:quantity) %>
+      <%= submit_tag("Purchase From Store")%>
+    <% end %>
+    <%= form_tag(:controller => "shops", :action => "buy_from_character", :item_id => item.id) do %>
+      <%= label_tag(:quantity, "Quantity:") %>
+      <%= number_field_tag(:quantity) %>
+      <%= submit_tag("Sell To Store")%>
+    <% end %>
+    <br /><br />  
+  <% end %>
+
 <%= link_to 'Edit', edit_shop_path(@shop) %> |
 <%= link_to 'Back', shops_path %>
+

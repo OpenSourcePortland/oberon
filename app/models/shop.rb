@@ -29,4 +29,17 @@ class Shop < ActiveRecord::Base
   def has_stock_of?(good)
     shop_inventory_items.find_by_good_id(good.id) && shop_inventory_items.find_by_good_id(good.id).quantity > 0
   end
+  
+  def sell(character, good, quantity)
+    item = shop_inventory_items.find_by_good_id(good.id)
+    item.quantity -= quantity  
+    item.save
+  end
+  
+  def buy(character, good, quantity)
+    item = shop_inventory_items.find_by_good_id(good.id)
+    item.quantity += quantity  
+    item.save
+  end
+  
 end

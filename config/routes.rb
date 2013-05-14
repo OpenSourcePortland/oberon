@@ -6,7 +6,12 @@ Oberon::Application.routes.draw do
   resources :shop_inventory_items
 
 
-  resources :shops
+  resources :shops do
+    member do
+      post 'sell_to_character'
+      post 'buy_from_character'
+    end
+  end
 
 
   get "sessions/create"

@@ -5,6 +5,13 @@
   <%= @location.name %>
 </p>
 
+<h3>Shops Available:</h3>
+<ol>
+  <% @shops.each do |shop| %>
+    <li><%= link_to(shop.name, shop) %></li>
+  <% end %>
+</ol>  
+
 
 
 <h3>Properties Available:</h3>

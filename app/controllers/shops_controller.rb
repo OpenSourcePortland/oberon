@@ -1,6 +1,5 @@
 class ShopsController < ApplicationController
-  # GET /shops
-  # GET /shops.json
+
   def index
     @shops = Shop.all
 
@@ -10,8 +9,6 @@ class ShopsController < ApplicationController
     end
   end
 
-  # GET /shops/1
-  # GET /shops/1.json
   def show
     @shop = Shop.find(params[:id])
 
@@ -21,8 +18,6 @@ class ShopsController < ApplicationController
     end
   end
 
-  # GET /shops/new
-  # GET /shops/new.json
   def new
     @shop = Shop.new
 
@@ -32,13 +27,10 @@ class ShopsController < ApplicationController
     end
   end
 
-  # GET /shops/1/edit
   def edit
     @shop = Shop.find(params[:id])
   end
 
-  # POST /shops
-  # POST /shops.json
   def create
     @shop = Shop.new(params[:shop])
 
@@ -53,8 +45,7 @@ class ShopsController < ApplicationController
     end
   end
 
-  # PUT /shops/1
-  # PUT /shops/1.json
+
   def update
     @shop = Shop.find(params[:id])
 
@@ -69,8 +60,7 @@ class ShopsController < ApplicationController
     end
   end
 
-  # DELETE /shops/1
-  # DELETE /shops/1.json
+
   def destroy
     @shop = Shop.find(params[:id])
     @shop.destroy
@@ -80,4 +70,34 @@ class ShopsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def sell_to_character
+    shop = Shop.find(params[:id])
+    character = Character.first
+    item = ShopInventoryItem.find(params[:item_id])
+    quantity = params[:quantity].to_i
+    respond_to do |format|
+      if shop.sell(character, item, quantity)
+        format.html { redirect_to shop, notice: 'Item sold to character!' }
+      else
+        format.html { redirect_to shop, notice: 'Item not sold!' }
+      end
+    end
+  end
+  
+  def buy_from_character
+     shop = Shop.find(params[:id])
+     character = Character.first
+     item = ShopInventoryItem.find(params[:item_id])
+     quantity = params[:quantity].to_i
+     respond_to do |format|
+       if shop.buy(character, item, quantity)
+         format.html { redirect_to shop, notice: 'Item purchased from character!' }
+       else
+         format.html { redirect_to shop, notice: 'Item not purchased!' }
+       end
+     end
+   end
+  
+  
 end

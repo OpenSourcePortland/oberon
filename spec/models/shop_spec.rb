@@ -13,10 +13,21 @@ describe Shop do
   
   let(:character) { Fabricate(:character) }
   
-  it "#stock should add an inventory item to the shop" do
-    @random_good = Fabricate(:good)
-    @shop.stock(@random_good, 10, 50, 100)
-    expect(@shop.has_stock_of?(@random_good)).to be_true
+  describe "#stock" do
+  
+    it "should add an inventory item to the shop" do
+      @random_good = Fabricate(:good)
+      @shop.stock(@random_good, 10, 50, 100)
+      expect(@shop.has_stock_of?(@random_good)).to be_true
+    end
+    
+    it "should increase the quantity if the good is already in stock" do
+      good = Fabricate(:good)
+      @shop.stock(good, 10, 50, 50)
+      @shop.stock(good, 10, 100, 50)
+      expect(@shop.quantity_of(good)).to eq(100)
+    end
+    
   end
   
   it "#buy_price_of should return the correct buy_price for that item" do

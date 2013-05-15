@@ -99,6 +99,24 @@ ShopInventoryItem.create!(
   :quantity => 0
 )
 
+CharacterInventoryItem.create!(
+  :good_id => 3,
+  :character_id => 1,
+  :quantity => 10
+)
+
+CharacterInventoryItem.create!(
+  :good_id => 1,
+  :character_id => 1,
+  :quantity => 20
+)
+
+CharacterInventoryItem.create!(
+  :good_id => 2,
+  :character_id => 2,
+  :quantity => 10
+)
+
 NUMBER_OF_USERS = 100
 NUMBER_OF_USERS.times do |i|
   puts "Working user #{i}" if i % 100 == 0

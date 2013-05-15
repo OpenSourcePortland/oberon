@@ -49,6 +49,7 @@ class Shop < ActiveRecord::Base
     item.quantity -= quantity
     #character.buy_good(good, quantity)
     item.save
+    #need to make sure shop can't sell more inventory than they have in stock
   end
   
   def buy(character, good, quantity)

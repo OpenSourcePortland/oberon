@@ -12,6 +12,13 @@
 <% end %>
 </ol>
 
+<p>Your goods</p>
+<ol>
+<% @character.character_inventory_items.each do |item| %>
+  <li><%= item.good.name %> | Quantity: <%= item.quantity %></li>
+<% end %>
+</ol>
+
 
 <p>Your Location: <%= @character.location.name %> </p>
 

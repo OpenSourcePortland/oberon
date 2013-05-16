@@ -1,0 +1,8 @@
+class AddDefaultToInventoryQuantities < ActiveRecord::Migration
+  def change
+    change_column_default(:shop_inventory_items, :quantity, 0)
+    change_column_default(:character_inventory_items, :quantity, 0)
+    CharacterInventoryItem.where(quantity: nil).update_all(quantity: 0)
+    ShopInventoryItem.where(quantity: nil).update_all(quantity: 0)
+  end
+end

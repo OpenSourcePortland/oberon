@@ -16,6 +16,8 @@ class Character < ActiveRecord::Base
                        
   PLAYER_TURNS = 2016
   
+  include Transactionable
+  
   def increment_turn(turns)
     self.turns_spent += turns
   end
@@ -35,6 +37,10 @@ class Character < ActiveRecord::Base
       CharacterInventoryItem.create!(character_id: self.id, good_id: good.id, quantity: 0) 
       #mark review - we have to set quantity at 0 so its not nil, should we set the default to 0 in the migration?
     end
+  end
+  
+  def inventory_items
+    character_inventory_items
   end
   
   def stock(good, quantity)

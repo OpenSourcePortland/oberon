@@ -44,7 +44,7 @@ class Character < ActiveRecord::Base
   end
   
   def quantity_of(good)
-    character_inventory_items.find_by_good_id(good.id).quantity
+    character_inventory_items.find_by_good_id(good.id) ? character_inventory_items.find_by_good_id(good.id).quantity : 0
   end
   
   def buy_good(good, quantity)
@@ -52,7 +52,7 @@ class Character < ActiveRecord::Base
   end
   
   def valid_quantity?(good, quantity)
-    character_inventory_items.find_by_good_id(good.id) && character_inventory_items.find_by_good_id(good.id).quantity >= quantity
+    character_inventory_items.find_by_good_id(good.id) && quantity_of(good) >= quantity
   end
   
   def sell_good(good, quantity)
@@ -61,7 +61,7 @@ class Character < ActiveRecord::Base
       updated_quantity = item.quantity - quantity
       item.update_attribute(:quantity, updated_quantity)
     else
-      false
+      false #mark review - should these be exceptions instead?
     end
   end
 

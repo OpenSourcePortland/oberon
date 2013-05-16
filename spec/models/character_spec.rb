@@ -46,7 +46,6 @@ describe Character do
     
     it "#buy_good should increase the quantity of the good by quantity purchased" do   
       expect{@character.buy_good(@good, 10)}.to change{@character.quantity_of(@good)}.by(10)
-    
     end
     
     it "#buy_good should reduce the character 'cash' value" do
@@ -55,7 +54,6 @@ describe Character do
     
     it "#sell_good should reduce the quantity of the good by quantity sold" do    
       expect{@character.sell_good(@good, 10)}.to change{@character.quantity_of(@good)}.by(-10)
-    
     end
     
     it "#sell_good should return false if they don't have enough of that good" do
@@ -64,9 +62,7 @@ describe Character do
     
     it "#sell_good should return false if they don't have that good at all" do
       expect(@character.sell_good(Fabricate(:good), 1000)).to be_false
-    end
-    
-    
+    end    
   end
     
 end

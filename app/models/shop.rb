@@ -44,18 +44,30 @@ class Shop < ActiveRecord::Base
     shop_inventory_items.find_by_good_id(good.id) && shop_inventory_items.find_by_good_id(good.id).quantity > 0
   end
   
+  def valid_quantity?(good, quantity)
+    shop_inventory_items.find_by_good_id(good.id) && quantity_of(good) >= quantity
+  end
+  
+  # mark review - we can't decide on raising errors or soft fail for these kinds of methods. 
   def sell(character, good, quantity)
-    item = shop_inventory_items.find_by_good_id(good.id)
-    item.quantity -= quantity
-    #character.buy_good(good, quantity)
-    item.save
-    #need to make sure shop can't sell more inventory than they have in stock
+    if valid_quantity?(good, quantity)
+      item = shop_inventory_items.find_by_good_id(good.id)
+      item.quantity -= quantity
+      item.save!
+      character.buy_good(good, quantity)
+     else 
+       false
+     end
   end
   
   def buy(character, good, quantity)
-    item = shop_inventory_items.find_by_good_id(good.id)
-    item.quantity += quantity
-    item.save
+    if character.sell_good(good, quantity)
+      item = shop_inventory_items.find_by_good_id(good.id)
+      item.quantity += quantity
+      item.save!
+    else
+      false
+    end
   end
   
 end

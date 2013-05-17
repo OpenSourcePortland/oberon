@@ -8,6 +8,8 @@ class Character < ActiveRecord::Base
   has_many :character_inventory_items
   has_many :goods, :through => :character_inventory_items
   
+  has_many :possessions, :as => :ownable
+  
   PLAYER_ATTRIBUTES = [:compassion, :courage, :dependability,
                        :endurance, :honesty, :honor,             
                        :charisma, :leadership, :logistics, 
@@ -35,8 +37,7 @@ class Character < ActiveRecord::Base
   end
   
   def initialize_inventory_item(good, quantity)
-    CharacterInventoryItem.create!(character_id: self.id, 
-      good_id: good.id, quantity: quantity) 
+    self.character_inventory_items.create!(good_id: good.id, quantity: quantity) 
   end
 
   def increase_inventory_item(good, quantity)

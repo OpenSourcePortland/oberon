@@ -1,11 +1,17 @@
 module Transactionable
   
+  # stock method needs work
+  # memoizing is causing issues in tests... possibly also in space?
+  # need to look at wich methods we can now delete from Character.rb
+  # still need to test buttons in view
+  
   def has_enough?(good, quantity)
     inventory_item(good).quantity >= quantity
   end
   
+  # this needs to be changed to not create if can't find
   def inventory_item(good)
-    @inventory_item ||= inventory_items.find_or_create_by_good_id(good.id)
+    @inventory_item ||= inventory_items.find_or_create_by_good_id(good.id) 
   end
   
   def inventory_items
@@ -20,6 +26,22 @@ module Transactionable
     inventory_item(good).update_attributes(quantity: inventory_item(good).quantity - quantity)
   end
   
+  # need to add find or create to only this method
+  def stock(good, buy_price = nil, sell_price = nil, quantity)
+    item = inventory_item(good)
+    updated_quantity = item.quantity + quantity
+    item.update_attribute(:buy_price, buy_price) if buy_price
+    item.update_attribute(:sell_price, sell_price) if sell_price
+    item.update_attribute(:quantity, updated_quantity)
+  end
+  
+  def quantity_of(good)
+    inventory_item(good).quantity
+  end
+  
+  def has_stock_of?(good)
+  inventory_item(good) &&  quantity_of(good) > 0 
+  end
 end
 
 =begin
@@ -43,25 +65,11 @@ def stock(good, buy_price = nil, sell_price = nil, quantity)
 end
 
 
-def buy_price_of(good)
-  shop_inventory_items.find_by_good_id(good.id).buy_price
-end
 
-def sell_price_of(good)
-  shop_inventory_items.find_by_good_id(good.id).sell_price
-end
 
-def quantity_of(good)
-  shop_inventory_items.find_by_good_id(good.id).quantity
-end
 
-def trades_in?(good)
-  shop_inventory_items.find_by_good_id(good.id)
-end
 
-def has_stock_of?(good)
-  shop_inventory_items.find_by_good_id(good.id) && shop_inventory_items.find_by_good_id(good.id).quantity > 0
-end
+
 
 def valid_quantity?(good, quantity)
   shop_inventory_items.find_by_good_id(good.id) && quantity_of(good) >= quantity

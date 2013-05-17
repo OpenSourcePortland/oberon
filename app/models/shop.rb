@@ -9,8 +9,8 @@ class Shop < ActiveRecord::Base
   has_many :possessions, as: :ownable
   #has_many :stock_items, :as => :stockable
   
-  include Owning
   include Transactionable
+  include Owning
   
   def inventory_items
     shop_inventory_items

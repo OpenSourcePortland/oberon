@@ -24,4 +24,18 @@ class Shop < ActiveRecord::Base
     shop_inventory_items.find_by_good_id(good.id).sell_price
   end
   
+  # need to add find or create to only this method
+  def stock(good, buy_price, sell_price, quantity)
+    item = create_inventory_item(good)
+    item.update_attributes(buy_price: buy_price,
+    sell_price: sell_price, quantity: quantity)
+  end
+  
+  def restock(good, quantity)
+    add_good(good, quantity)
+  end
+
+  def create_inventory_item(good)
+    ShopInventoryItem.create!(shop_id: self.id, good_id: good.id)
+  end
 end

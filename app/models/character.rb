@@ -30,45 +30,39 @@ class Character < ActiveRecord::Base
     turns_remaining == 0 #true
   end
   
-  def find_or_create(good)
-    if item = character_inventory_items.find_by_good_id(good.id)
-      item
-    else
-      CharacterInventoryItem.create!(character_id: self.id, good_id: good.id, quantity: 0) 
-      #mark review - we have to set quantity at 0 so its not nil, should we set the default to 0 in the migration?
-    end
-  end
-  
   def inventory_items
     character_inventory_items
   end
   
-  def stock(good, quantity)
-    item = find_or_create(good)
-    item.quantity += quantity
-    item.save!
+  def initialize_inventory_item(good, quantity)
+    CharacterInventoryItem.create!(character_id: self.id, 
+      good_id: good.id, quantity: quantity) 
+  end
+
+  def increase_inventory_item(good, quantity)
+    add_good(good, quantity)
   end
   
-  def quantity_of(good)
-    character_inventory_items.find_by_good_id(good.id) ? character_inventory_items.find_by_good_id(good.id).quantity : 0
-  end
+  # def quantity_of(good)
+  #   character_inventory_items.find_by_good_id(good.id) ? character_inventory_items.find_by_good_id(good.id).quantity : 0
+  # end
   
-  def buy_good(good, quantity)
-    stock(good, quantity)
-  end
+  # def buy_good(good, quantity)
+  #   stock(good, quantity)
+  # end
   
-  def valid_quantity?(good, quantity)
-    character_inventory_items.find_by_good_id(good.id) && quantity_of(good) >= quantity
-  end
+  # def valid_quantity?(good, quantity)
+  #   character_inventory_items.find_by_good_id(good.id) && quantity_of(good) >= quantity
+  # end
   
-  def sell_good(good, quantity)
-    if valid_quantity?(good, quantity)
-      item = character_inventory_items.find_by_good_id(good.id)
-      updated_quantity = item.quantity - quantity
-      item.update_attribute(:quantity, updated_quantity)
-    else
-      false #mark review - should these be exceptions instead?
-    end
-  end
+  # def sell_good(good, quantity)
+  #   if valid_quantity?(good, quantity)
+  #     item = character_inventory_items.find_by_good_id(good.id)
+  #     updated_quantity = item.quantity - quantity
+  #     item.update_attribute(:quantity, updated_quantity)
+  #   else
+  #     false #mark review - should these be exceptions instead?
+  #   end
+  # end
 
 end

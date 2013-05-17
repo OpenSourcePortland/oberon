@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516220912) do
+ActiveRecord::Schema.define(:version => 20130517213036) do
 
   create_table "character_inventory_items", :force => true do |t|
     t.integer  "character_id"
@@ -46,6 +46,18 @@ ActiveRecord::Schema.define(:version => 20130516220912) do
     t.integer  "y"
     t.integer  "z"
   end
+
+  create_table "possessions", :force => true do |t|
+    t.integer  "quantity",     :default => 0
+    t.integer  "good_id"
+    t.integer  "ownable_id"
+    t.string   "ownable_type"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "possessions", ["good_id", "ownable_id"], :name => "index_possessions_on_good_id_and_ownable_id"
+  add_index "possessions", ["ownable_id", "good_id"], :name => "index_possessions_on_ownable_id_and_good_id"
 
   create_table "profiles", :force => true do |t|
     t.integer  "technical",     :default => 0
@@ -86,9 +98,6 @@ ActiveRecord::Schema.define(:version => 20130516220912) do
     t.string   "name"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
-    t.string   "ship_type"
-    t.integer  "price"
-    t.integer  "ship_size"
     t.integer  "fuel",         :default => 0
   end
 

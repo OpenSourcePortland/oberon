@@ -7,7 +7,6 @@ module Transactionable
     inventory_item(good).quantity >= quantity
   end
   
-  # this needs to be changed to not create if can't find
   def inventory_item(good)
     inventory_items.find_by_good_id(good.id)
   end

@@ -1,11 +1,15 @@
 class Shop < ActiveRecord::Base
   attr_accessible :location_id, :name
   
-  belongs_to :location, :dependent => :destroy
+  belongs_to :location, dependent: :destroy
   
   has_many :shop_inventory_items
   has_many :goods, :through => :shop_inventory_items
   
+  has_many :possessions, as: :ownable
+  #has_many :stock_items, :as => :stockable
+  
+  include Owning
   include Transactionable
   
   def inventory_items
@@ -36,6 +40,6 @@ class Shop < ActiveRecord::Base
   end
 
   def create_inventory_item(good)
-    ShopInventoryItem.create!(shop_id: self.id, good_id: good.id)
+    shop_inventory_items.create!(good_id: good.id)
   end
 end

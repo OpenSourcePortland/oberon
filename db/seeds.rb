@@ -52,7 +52,7 @@ Property.create!(
   :price => 4000
 )
 
-Shop.create!(
+shop = Shop.create!(
   :name => "Space Emporium",
   :location_id => 1
 )
@@ -74,7 +74,7 @@ Good.create!(
   :name => "gold"
 )
 
-# ShopInventoryItem.create!(
+# shop.ware.create!(
 #   :good_id => 1,
 #   :shop_id => 1,
 #   :buy_price => 50,
@@ -82,7 +82,7 @@ Good.create!(
 #   :quantity => 100
 # )
 # 
-# ShopInventoryItem.create!(
+# Ware.create!(
 #   :good_id => 2,
 #   :shop_id => 1,
 #   :buy_price => 25,
@@ -91,7 +91,7 @@ Good.create!(
 #   
 # )
 # 
-# ShopInventoryItem.create!(
+# Ware.create!(
 #   :good_id => 3,
 #   :shop_id => 2,
 #   :buy_price => 75,
@@ -99,21 +99,45 @@ Good.create!(
 #   :quantity => 0
 # )
 # 
-# CharacterInventoryItem.create!(
+# Ware.create!(
 #   :good_id => 3,
 #   :character_id => 1,
-#   :quantity => 10
+#   :buy_price => 75,
+#   :sell_price => 150,
+#   :quantity => 0
 # )
 # 
-# CharacterInventoryItem.create!(
+# Ware.create!(
+#   :good_id => 3,
+#   :character_id => 2,
+#   :buy_price => 75,
+#   :sell_price => 150,
+#   :quantity => 0
+# )
+
+
+
+# Possession.create!(
 #   :good_id => 1,
 #   :character_id => 1,
 #   :quantity => 20
 # )
 # 
-# CharacterInventoryItem.create!(
+# Possession.create!(
 #   :good_id => 2,
 #   :character_id => 2,
+#   :quantity => 10
+# )
+# 
+# Possession.create!(
+#   :good_id => 2,
+#   :shop_id => 2,
+#   :quantity => 10
+# )
+# 
+# Possession.create!(
+#   :good_id => 2,
+#   :shop_id => 2,
 #   :quantity => 10
 # )
 
@@ -195,3 +219,7 @@ NUMBER_OF_USERS.times do |i|
                      tactical: rand(101), 
                           wit: rand(101))
 end
+
+Character.first.add_good(Good.create!, 10)
+
+Shop.first.add_good(Good.create!, 10)

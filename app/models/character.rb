@@ -7,6 +7,7 @@ class Character < ActiveRecord::Base
   has_many :properties
   
   has_many :possessions, :as => :ownable
+  has_many :wares, :as => :vendable
   
   PLAYER_ATTRIBUTES = [:compassion, :courage, :dependability,
                        :endurance, :honesty, :honor,             
@@ -17,7 +18,7 @@ class Character < ActiveRecord::Base
   PLAYER_TURNS = 2016
   
   include Owning
-  include Transactionable
+  #include Transactionable
   
   def increment_turn(turns)
     self.turns_spent += turns

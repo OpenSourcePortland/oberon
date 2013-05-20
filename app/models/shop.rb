@@ -4,10 +4,10 @@ class Shop < ActiveRecord::Base
   belongs_to :location, dependent: :destroy
   
   has_many :possessions, as: :ownable
-  #has_many :stock_items, :as => :stockable
+  has_many :wares, :as => :vendable
 
   include Owning
-  include Transactionable
+  #include Transactionable
   
   def inventory_items
     shop_inventory_items

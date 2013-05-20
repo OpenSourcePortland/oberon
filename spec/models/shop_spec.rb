@@ -4,9 +4,9 @@ require 'spec_helper'
 describe Shop do
   before(:each) do
     @owner = Fabricate(:shop)
-    @good = Fabricate(:good)
-    @not_in_stock = Fabricate(:good)
-    @out_of_stock = Fabricate(:good)
+    #@good = Fabricate(:good)
+    #@not_in_stock = Fabricate(:good)
+    #@out_of_stock = Fabricate(:good)
     #@owner.stock(@good, 10, 50, 100)
     #@owner.stock(@out_of_stock, 10, 50, 0)   
   end
@@ -17,8 +17,8 @@ describe Shop do
   it_behaves_like "owning"
   
   describe "#stock" do
-    pending
     it "should add an inventory item to the shop" do
+      pending
       @random_good = Fabricate(:good)
       shop.stock(@random_good, 10, 50, 100)
       expect(shop.has_stock_of?(@random_good)).to be_true
@@ -31,12 +31,6 @@ describe Shop do
     shop.stock(good, 10, 50, 50)
     shop.restock(good, 50)
     expect(shop.quantity_of(good)).to eq(100)
-  end
-  
-  
-  it "#quantity_of should return the correct quantity of that item" do
-    pending
-    expect(shop.quantity_of(@good)).to eq(100)
   end
   
   it "#trades_in? should return true if shop trades in that item" do

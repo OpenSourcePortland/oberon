@@ -11,15 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130517213036) do
-
-  create_table "character_inventory_items", :force => true do |t|
-    t.integer  "character_id"
-    t.integer  "good_id"
-    t.integer  "quantity",     :default => 0
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130520223029) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -105,16 +97,6 @@ ActiveRecord::Schema.define(:version => 20130517213036) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.integer  "fuel",         :default => 0
-  end
-
-  create_table "shop_inventory_items", :force => true do |t|
-    t.integer  "shop_id"
-    t.integer  "buy_price"
-    t.integer  "sell_price"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "good_id"
-    t.integer  "quantity",   :default => 0
   end
 
   create_table "shops", :force => true do |t|

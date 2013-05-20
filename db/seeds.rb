@@ -74,48 +74,48 @@ Good.create!(
   :name => "gold"
 )
 
-ShopInventoryItem.create!(
-  :good_id => 1,
-  :shop_id => 1,
-  :buy_price => 50,
-  :sell_price => 75,
-  :quantity => 100
-)
-
-ShopInventoryItem.create!(
-  :good_id => 2,
-  :shop_id => 1,
-  :buy_price => 25,
-  :sell_price => 50,
-  :quantity => 100
-  
-)
-
-ShopInventoryItem.create!(
-  :good_id => 3,
-  :shop_id => 2,
-  :buy_price => 75,
-  :sell_price => 150,
-  :quantity => 0
-)
-
-CharacterInventoryItem.create!(
-  :good_id => 3,
-  :character_id => 1,
-  :quantity => 10
-)
-
-CharacterInventoryItem.create!(
-  :good_id => 1,
-  :character_id => 1,
-  :quantity => 20
-)
-
-CharacterInventoryItem.create!(
-  :good_id => 2,
-  :character_id => 2,
-  :quantity => 10
-)
+# ShopInventoryItem.create!(
+#   :good_id => 1,
+#   :shop_id => 1,
+#   :buy_price => 50,
+#   :sell_price => 75,
+#   :quantity => 100
+# )
+# 
+# ShopInventoryItem.create!(
+#   :good_id => 2,
+#   :shop_id => 1,
+#   :buy_price => 25,
+#   :sell_price => 50,
+#   :quantity => 100
+#   
+# )
+# 
+# ShopInventoryItem.create!(
+#   :good_id => 3,
+#   :shop_id => 2,
+#   :buy_price => 75,
+#   :sell_price => 150,
+#   :quantity => 0
+# )
+# 
+# CharacterInventoryItem.create!(
+#   :good_id => 3,
+#   :character_id => 1,
+#   :quantity => 10
+# )
+# 
+# CharacterInventoryItem.create!(
+#   :good_id => 1,
+#   :character_id => 1,
+#   :quantity => 20
+# )
+# 
+# CharacterInventoryItem.create!(
+#   :good_id => 2,
+#   :character_id => 2,
+#   :quantity => 10
+# )
 
 Property.create!(
   :name => "Gold Mountain",

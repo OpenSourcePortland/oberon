@@ -10,10 +10,5 @@ describe "shops/show" do
     @shop = Fabricate(:shop)
   end
 
-  it "renders attributes in <p>" do
-    render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    #rendered.should match(/1/)
-    #rendered.should match(/Name/)
-  end
+
 end

@@ -5,8 +5,8 @@ class Character < ActiveRecord::Base
   has_one :ship
   belongs_to :location
   has_many :properties
-  has_many :character_inventory_items
-  has_many :goods, :through => :character_inventory_items
+  #has_many :character_inventory_items
+  #has_many :goods, :through => :character_inventory_items
   
   has_many :possessions, :as => :ownable
   

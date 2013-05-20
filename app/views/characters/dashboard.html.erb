@@ -4,13 +4,8 @@
 <h1>Dashboard</h1>
 <p id="notice"><%= notice %></p>
 
-<p><%= @character.name %> </p>
-<p>Your ships</p>
-<ol>
-<% @character.ships.each do |ship| %>
-	<li><%=ship.name %></li>
-<% end %>
-</ol>
+<p><%= @character.name %>, id: <%= @character.id %> </p>
+
 
 <p>Your goods</p>
 <ol>
@@ -23,30 +18,58 @@
 <p>Your Location: <%= @character.location.name %> </p>
 
 
-<% if @character.ships.any? %>
+
+<% if current_ship %>
+<p>Your ship: <%= current_ship.name %>
+<br>Your Fuel: <%= current_ship.fuel %>
+<br>Turns Left: <%= @character.turns_remaining %>
+</p>
 <p>Where would you like to travel to?</p>
+	<table>
+	  <tr>
+	    <th>Destination</th>
+	    <th>Distance</th>
+	    <th>Fuel Required</th>
+	    <th>Enough Fuel?</th>
+	    <th>Turns Required</th>
+	    <th>Enough Turns?</th>
+	    <th>Travel</th>
+	  </tr>
+		<% @locations.each do |destination| %>
+  		<tr>
+  			<td><%= destination.name %></td>
+  			<td><%= current_ship.distance_to(destination) %></td>
+  			<td><%= current_ship.fuel_needed_to(destination) %></td>
+  			<td><%= current_ship.can_get_to?(destination) %></td>
+  			<td><%= @time_required = current_ship.time_to_travel_to(destination) %></td>
+  			<td><%= @character.enough_turns?(@time_required) %></td>
+  			<td><%= button_to "Travel", :action => "travel", :id => @character.id, :dest_id => destination.id, :distance => distance %></td>
+  		</td>
+		<% end %>	  
 
-<%= form_for(@character) do |f| %>
-  <% if @character.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@character.errors.count, "error") %> prohibited this character from being saved:</h2>
+	<% if false %> <!-- old form saved in case we want to revert -->
+		<%= form_for(@character) do |f| %>
+		  <% if @character.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@character.errors.count, "error") %> prohibited this character from being saved:</h2>
 
-      <ul>
-      <% @character.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+		      <ul>
+		      <% @character.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
 
-  <div class="field">
-    <%= collection_select(:character, :location_id, Location.all, :id, :name)%>
-  </div>
+		  <div class="field">
+		    <%= collection_select(:character, :location_id, Location.all, :id, :name)%>
+		  </div>
   
-    <div class="actions">
-      <%= f.submit ">>>>>>  Travel  >>>>>>>" %>
-    </div>
-  <% end %>
+		    <div class="actions">
+		      <%= f.submit ">>>>>>  Travel  >>>>>>>" %>
+		    </div>
+		  <% end %>
+	<% end %>	
 <% else %>
   <p>You don't have a ship yet! Buy one at the <%= link_to "Ship Store", ship_store_path %>.
 

@@ -12,19 +12,28 @@ Oberon::Application.routes.draw do
       post 'buy_from_character'
     end
   end
+  resources :materials
 
 
   get "sessions/create"
 
   get "session/create"
 
-  resources :properties
+  resources :properties do
+    member do
+      post 'assign'
+    end
+  end
 
 
   resources :locations
 
 
-  resources :characters 
+  resources :characters do
+    member do
+      post 'travel'
+    end
+  end
 
   resource :profile
   

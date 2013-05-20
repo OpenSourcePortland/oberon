@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(:version => 20130517213036) do
     t.integer  "z"
   end
 
+  create_table "materials", :force => true do |t|
+    t.integer  "good_id"
+    t.integer  "output_rate"
+    t.integer  "quantity"
+    t.boolean  "renewable"
+    t.integer  "property_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "possessions", :force => true do |t|
     t.integer  "quantity",     :default => 0
     t.integer  "good_id"
@@ -82,15 +92,11 @@ ActiveRecord::Schema.define(:version => 20130517213036) do
 
   create_table "properties", :force => true do |t|
     t.string   "name"
-    t.string   "property_type"
-    t.integer  "resource_count"
-    t.integer  "output_rate"
-    t.boolean  "renewable"
     t.integer  "location_id"
     t.integer  "character_id"
     t.integer  "price"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "ships", :force => true do |t|

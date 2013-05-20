@@ -1,12 +1,10 @@
 class Character < ActiveRecord::Base
-  attr_accessible :gender, :name, :species, :location_id #:profile_attributes, :profiles_attributes
+  attr_accessible :gender, :name, :species, :location_id
   
   has_one :profile
   has_one :ship
   belongs_to :location
   has_many :properties
-  #has_many :character_inventory_items
-  #has_many :goods, :through => :character_inventory_items
   
   has_many :possessions, :as => :ownable
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507180455) do
+ActiveRecord::Schema.define(:version => 20130510213005) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(:version => 20130507180455) do
     t.integer  "turns_spent", :default => 0
   end
 
+  create_table "goods", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.string   "category"
@@ -31,6 +37,16 @@ ActiveRecord::Schema.define(:version => 20130507180455) do
     t.integer  "x"
     t.integer  "y"
     t.integer  "z"
+  end
+
+  create_table "materials", :force => true do |t|
+    t.integer  "good_id"
+    t.integer  "output_rate"
+    t.integer  "quantity"
+    t.boolean  "renewable"
+    t.integer  "property_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "profiles", :force => true do |t|
@@ -56,15 +72,11 @@ ActiveRecord::Schema.define(:version => 20130507180455) do
 
   create_table "properties", :force => true do |t|
     t.string   "name"
-    t.string   "property_type"
-    t.integer  "resource_count"
-    t.integer  "output_rate"
-    t.boolean  "renewable"
     t.integer  "location_id"
     t.integer  "character_id"
     t.integer  "price"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "ships", :force => true do |t|
@@ -72,7 +84,27 @@ ActiveRecord::Schema.define(:version => 20130507180455) do
     t.string   "name"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.string   "ship_type"
+    t.integer  "price"
+    t.integer  "ship_size"
     t.integer  "fuel",         :default => 0
+  end
+
+  create_table "shop_inventory_items", :force => true do |t|
+    t.integer  "shop_id"
+    t.integer  "buy_price"
+    t.integer  "sell_price"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "good_id"
+    t.integer  "quantity"
+  end
+
+  create_table "shops", :force => true do |t|
+    t.integer  "location_id"
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

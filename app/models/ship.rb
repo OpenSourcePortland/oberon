@@ -1,5 +1,5 @@
 class Ship < ActiveRecord::Base
-  attr_accessible :name, :character_id
+  attr_accessible :name, :character_id, :fuel
   
   belongs_to :character
   

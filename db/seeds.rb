@@ -47,13 +47,68 @@ Location.create!(
 
 Property.create!(
   :name => "Olympus Fields",
-  :property_type => :mining,
-  :resource_count => 3000,
-  :output_rate => 1,
-  :renewable => false,
   :location_id => 3,
   :price => 4000
 )
+
+Property.create!(
+  :name => "Gold Mountain",
+  :location_id => 3,
+  :price => 5000
+)
+
+Property.create!(
+  :name => "Iron Ore lake",
+  :location_id => 3,
+  :price => 4000
+)
+
+# Material.create!(
+#   :property_id => 1,
+#   :good_id => 1,
+#   :output_rate => 3,
+#   :quantity => 5000,
+#   :renewable => false
+# )
+# 
+# Material.create!(
+#   :property_id => 1,
+#   :good_id => 3,
+#   :output_rate => 3,
+#   :quantity => 5000,
+#   :renewable => false
+# )
+# 
+# Material.create!(
+#   :property_id => 1,
+#   :good_id => 2,
+#   :output_rate => 3,
+#   :quantity => 0,
+#   :renewable => true
+# )
+
+NUMBER_OF_PROPERTY_MATERIALS = 100
+NUMBER_OF_PROPERTY_MATERIALS.times do |i|
+  Material.create!(
+    :property_id => 1,
+    :good_id => i,
+    :output_rate => 3,
+    :quantity => 0,
+    :renewable => true
+  )
+end
+
+NUMBER_OF_MATERIALS = 500
+NUMBER_OF_MATERIALS.times do |i|
+  Material.create!(
+    :property_id => rand(500),
+    :good_id => 100 + i,
+    :output_rate => 3,
+    :quantity => 0,
+    :renewable => true
+  )
+end
+
 
 NUMBER_OF_USERS = 100
 NUMBER_OF_USERS.times do |i|

@@ -10,10 +10,10 @@ class Shop < ActiveRecord::Base
   include Vending
   #include Transactionable
   
-  def inventory_items
-    shop_inventory_items
-  end
-  
+  # def inventory_items
+  #   shop_inventory_items
+  # end
+  #   
   # def trades_in?(good)
   #   shop_inventory_items.find_by_good_id(good.id)
   # end

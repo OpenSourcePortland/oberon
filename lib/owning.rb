@@ -31,7 +31,7 @@ module Owning
   private
   
   def manipulate_quantity(possession, quantity)
-    possession.update_attributes(quantity: (possession.quantity + quantity))
+    possession.update_attributes(quantity: possession.quantity + quantity)
     possession.check_for_destroy
   end
 

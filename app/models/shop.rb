@@ -7,6 +7,7 @@ class Shop < ActiveRecord::Base
   has_many :wares, :as => :vendable
 
   include Owning
+  include Vending
   #include Transactionable
   
   def inventory_items

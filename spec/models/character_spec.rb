@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Character do
   before(:each) do
     @owner = Fabricate(:character)
+    @vendor = Fabricate(:character)
     @destination = Fabricate(:location, x: 100, y: 0, z: 0)
     @ship = Fabricate(:ship)
     @ship.update_attributes(character_id: @owner.id)
@@ -11,6 +12,7 @@ describe Character do
   let(:character) {@owner}
   
   it_behaves_like "owning"
+  it_behaves_like "vending"
   
   describe "turns" do  
     it "should increase turns_spent by one each turn" do

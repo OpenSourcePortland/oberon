@@ -4,6 +4,7 @@ require 'spec_helper'
 describe Shop do
   before(:each) do
     @owner = Fabricate(:shop)
+    @vendor = Fabricate(:shop)
     #@good = Fabricate(:good)
     #@not_in_stock = Fabricate(:good)
     #@out_of_stock = Fabricate(:good)
@@ -15,6 +16,7 @@ describe Shop do
   let(:shop) { @owner }
   
   it_behaves_like "owning"
+  it_behaves_like "vending"
   
   describe "#stock" do
     it "should add an inventory item to the shop" do

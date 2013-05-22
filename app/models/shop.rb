@@ -37,5 +37,9 @@ class Shop < ActiveRecord::Base
   def trades_in?(good)
     find_item(good)
   end
+  
+  def will_buy?(good)
+    trades_in?(good)
+  end
 
 end

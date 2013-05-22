@@ -40,6 +40,10 @@ class Character < ActiveRecord::Base
   def inventory_items
     possessions
   end
+  
+  def will_buy?(good)
+    true
+  end
   # 
   # def initialize_inventory_item(good, quantity)
   #   character_inventory_items.create!(good_id: good.id, quantity: quantity) 

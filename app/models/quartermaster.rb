@@ -25,11 +25,7 @@ class Quartermaster
   end
   
   def transaction_valid?
-    if @buyer.class.name == "Shop"
-      validate_stock && validate_can_afford && validate_shop_trades_in
-    else
-      validate_stock && validate_can_afford
-    end
+      validate_stock && validate_can_afford && validate_will_buy
   end
   
   def validate_shop_trades_in
@@ -43,6 +39,10 @@ class Quartermaster
   def validate_can_afford
     true
     # Pending implementation of currency
+  end
+  
+  def validate_will_buy
+    @buyer.will_buy?(@good)
   end
   
 end

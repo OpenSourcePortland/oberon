@@ -13,7 +13,7 @@ describe Shop do
   
   #it_behaves_like "owning"
   #it_behaves_like "vending"
-  it_behaves_like "transactionable"
+  #it_behaves_like "transactionable"
   
   it "#buy_price returns the buy_price of the good" do
     @vendor.stock(@good, 10, 5, 6)

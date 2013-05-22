@@ -2,6 +2,7 @@ module Transactionable
   
   def add_good(good, quantity)
     item = find_or_create_item(good)
+
     manipulate_quantity(item, quantity)
   end
   

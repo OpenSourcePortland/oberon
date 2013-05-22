@@ -45,18 +45,17 @@ shared_examples "transactionable" do
       expect{@owner.add_good(new_good, 10)}.to change{@owner.quantity_of(new_good)}.by(10)
     end
   
+    it "should add a quantity of the good to their possessions when called a second time" do
+      new_good = Fabricate(:good)
+      @owner.add_good(new_good, 10)
+      @owner.add_good(new_good, 10)
+      expect(@owner.quantity_of(new_good)).to eq(20)
+    end
+    
     it "should create possession for the good" do
       good = Fabricate(:good)
       @owner.add_good(good, 10)
       expect(@owner.quantity_of(good)).to eq(10)
     end
-
-    it "#should increase the quantity if the good is already in inventory" do
-      good = Fabricate(:good)
-      @owner.add_good(good, 10)
-      @owner.add_good(good, 10)
-      expect(@owner.quantity_of(good)).to eq(20)
-    end
   end
-  
 end

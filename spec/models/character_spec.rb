@@ -11,8 +11,9 @@ describe Character do
   
   let(:character) {@owner}
   
-  it_behaves_like "owning"
-  it_behaves_like "vending"
+  #it_behaves_like "owning"
+  #it_behaves_like "vending"
+  it_behaves_like "transactionable"
   
   describe "turns" do  
     it "should increase turns_spent by one each turn" do

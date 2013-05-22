@@ -17,9 +17,9 @@ class Character < ActiveRecord::Base
                        
   PLAYER_TURNS = 2016
   
-  include Owning
-  include Vending
-  #include Transactionable
+  #include Owning
+  #include Vending
+  include Transactionable
   
   def increment_turn(turns)
     self.turns_spent += turns

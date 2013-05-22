@@ -7,13 +7,13 @@ module Transactionable
   #   inventory_item(good).quantity >= quantity
   # end
   # 
-  # def inventory_item(good)
-  #   inventory_items.find_by_good_id(good.id)
-  # end
-  # 
-  # def inventory_items
-  #   raise "Abstract method inventory_items called"
-  # end
+  def inventory_item(good)
+    inventory_items.find_by_good_id(good.id)
+  end
+
+  def inventory_items
+    raise "Abstract method inventory_items called"
+  end
   # 
   # def add_good(good, quantity)
   #   inventory_item(good).update_attributes(quantity: inventory_item(good).quantity + quantity)

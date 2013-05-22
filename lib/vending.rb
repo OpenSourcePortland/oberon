@@ -15,23 +15,44 @@ module Vending
 
   def sell_price(good)
     find_ware(good).sell_price
+  end  
+  
+  def trades_in?(good)
+    find_ware(good)
   end
+  
   
   ### all of these are duplicates...
   
-  def ware_quantity_of(good)
+  def quantity_of_ware(good)
     ware = find_ware(good)
     ware ? ware.quantity : 0
   end
   
-  def ware_has_any?(good)
-    ware_has_enough?(good, 1)
+  def has_any_ware?(good)
+    has_enough_ware?(good, 1)
   end
   
-  def ware_has_enough?(good, quantity)
+  def has_enough_ware?(good, quantity)
     ware = find_ware(good)
     ware && ware.quantity >= quantity
   end
+  
+  # these seem a lot like add_good and reduce_good
+  def buy_good(good, quantity)
+    ware = find_ware(good)
+    ware.update_attributes(quantity: ware.quantity + quantity)
+  end
+  
+  def sell_good(good, quantity)
+    if has_enough_ware?(good, quantity)
+      ware = find_ware(good)
+      ware.update_attributes(quantity: ware.quantity - quantity)
+    else
+      false
+    end
+  end
+
   
   private
   
@@ -42,6 +63,7 @@ module Vending
   def find_or_create_ware(good)
     wares.find_or_create_by_good_id(good.id)
   end
+
 end
 
 =begin

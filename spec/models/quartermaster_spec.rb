@@ -7,20 +7,18 @@ describe Quartermaster do
     @shop = Fabricate(:shop)
     @good = Fabricate(:good)
     @not_enough_of_good = Fabricate(:good)
-    #@shop.stock(@good, 10, 50, 100)
+    @shop.stock(@good, 30, 50, 100)
     #@character.initialize_inventory_item(@good, 30)
     #@character.initialize_inventory_item(@not_enough_of_good, 30)
   end
   
   #Quartermaster.transact(Character.first, Shop.first, Good.first, 20)
   
-  it "#transact should increase quantity of buyer's good by 20" do
-    pending
+  it "#transact should increase quantity of buyer's possession of good by 20" do
     expect{Quartermaster.transact(@character, @shop, @good, 20)}.to change{@character.quantity_of(@good)}.by(20)
   end
   
   it "#transact should decrease quantity of shop's good by 20" do
-    pending
     expect{Quartermaster.transact(@character, @shop, @good, 20)}.to change{@shop.quantity_of(@good)}.by(-20)
   end
   

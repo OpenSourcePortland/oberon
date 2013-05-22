@@ -37,9 +37,9 @@ class Character < ActiveRecord::Base
     turns_remaining == 0 #true
   end
   
-  # def inventory_items
-  #   character_inventory_items
-  # end
+  def inventory_items
+    possessions
+  end
   # 
   # def initialize_inventory_item(good, quantity)
   #   character_inventory_items.create!(good_id: good.id, quantity: quantity) 

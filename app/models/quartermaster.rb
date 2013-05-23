@@ -25,7 +25,7 @@ class Quartermaster
   end
   
   def transaction_valid?
-      validate_stock && validate_can_afford && validate_will_buy
+      validate_stock && validate_quantity && validate_can_afford && validate_will_buy
   end
   
   def validate_shop_trades_in
@@ -34,6 +34,10 @@ class Quartermaster
   
   def validate_stock
     @seller.has_enough?(@good, @quantity)
+  end
+  
+  def validate_quantity
+    @quantity >= 0
   end
   
   def validate_can_afford

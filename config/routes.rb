@@ -1,5 +1,17 @@
 Oberon::Application.routes.draw do
 
+  resources :goods
+
+
+  resources :shop_inventory_items
+
+
+  resources :shops do
+    member do
+      post 'sell_to_character'
+      post 'buy_from_character'
+    end
+  end
   resources :materials
 
 

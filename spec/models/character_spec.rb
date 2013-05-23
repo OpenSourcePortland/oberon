@@ -2,44 +2,60 @@ require 'spec_helper'
 
 describe Character do
   before(:each) do
-    @character = Fabricate(:character)
+    @owner = Fabricate(:character)
+    @vendor = Fabricate(:character)
     @destination = Fabricate(:location, x: 100, y: 0, z: 0)
     @ship = Fabricate(:ship)
-    @ship.update_attributes(character_id: @character.id)
+    @ship.update_attributes(character_id: @owner.id)
   end
   
-  it "should increase turns_spent by one each turn" do
-    expect{@character.increment_turn(1)}.to change{@character.turns_spent}.by(1)
-  end
+  let(:character) {@owner}
   
-  it "should calculate turns_remaining" do
-    expect(@character.turns_remaining).to eq(Character::PLAYER_TURNS)
-  end
+  it_behaves_like "transactionable"
   
-  it "should end game when turns_spent equals PLAYER_TURNS" do
-    expect(@character.game_over?).to be_false
-    @character.turns_spent = Character::PLAYER_TURNS
-    expect(@character.game_over?).to be_true
-  end
+  describe "turns" do  
+    it "should increase turns_spent by one each turn" do
+      expect{character.increment_turn(1)}.to change{character.turns_spent}.by(1)
+    end
   
-  it "#enough_turns? should return false if the player does not have enough turns" do
-    @character.turns_spent = 2007
-    expect(@character.enough_turns?(10)).to be_false
-  end
+    it "should calculate turns_remaining" do
+      expect(character.turns_remaining).to eq(Character::PLAYER_TURNS)
+    end
   
-  it "should decrease turns by proper amount when traveling" do
-    @character.turns_spent = 0
-    expect{@character.travel(@destination)}.to change{@character.turns_spent}.by(1)
-  end
+    it "should end game when turns_spent equals PLAYER_TURNS" do
+      expect(character.game_over?).to be_false
+      character.turns_spent = Character::PLAYER_TURNS
+      expect(character.game_over?).to be_true
+    end
   
-  it "should return false if there are not enough turns to travel the distance" do
-    @character.turns_spent = 2016
-    expect(@character.travel(@destination)).to be_false
-  end
+    it "#enough_turns? should return false if the player does not have enough turns" do
+      character.turns_spent = 2007
+      expect(character.enough_turns?(10)).to be_false
+    end
+  
+    it "should decrease turns by proper amount when traveling" do
+      character.turns_spent = 0
+      expect{character.travel(@destination)}.to change{character.turns_spent}.by(1)
+    end
+  
+    it "should return false if there are not enough turns to travel the distance" do
+      character.turns_spent = 2016
+      expect(character.travel(@destination)).to be_false
+    end  
+  end  
   
   it "should update the location when traveling" do
-    @character.turns_spent = 0
-    @character.travel(@destination)
-    expect(@character.location).to be(@destination)
+    character.turns_spent = 0
+    character.travel(@destination)
+    expect(character.location).to be(@destination)
+  end
+  
+  it "#reduce_good should destroy the posession if quantity is reduced to 0" do
+    new_good = Fabricate(:good)
+    expect(@owner.possessions.count).to eq(0)
+    @owner.add_good(new_good, 5)
+    expect(@owner.possessions.count).to eq(1)
+    @owner.reduce_good(new_good, 5)
+    expect(@owner.possessions.count).to eq(0)
   end
 end

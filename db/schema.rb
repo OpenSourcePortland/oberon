@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510213005) do
+ActiveRecord::Schema.define(:version => 20130520224531) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(:version => 20130510213005) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "possessions", :force => true do |t|
+    t.integer  "quantity",     :default => 0
+    t.integer  "good_id"
+    t.integer  "ownable_id"
+    t.string   "ownable_type"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "possessions", ["good_id", "ownable_id"], :name => "index_possessions_on_good_id_and_ownable_id"
+  add_index "possessions", ["ownable_id", "good_id"], :name => "index_possessions_on_ownable_id_and_good_id"
+
   create_table "profiles", :force => true do |t|
     t.integer  "technical",     :default => 0
     t.integer  "pilot",         :default => 0
@@ -84,20 +96,7 @@ ActiveRecord::Schema.define(:version => 20130510213005) do
     t.string   "name"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
-    t.string   "ship_type"
-    t.integer  "price"
-    t.integer  "ship_size"
     t.integer  "fuel",         :default => 0
-  end
-
-  create_table "shop_inventory_items", :force => true do |t|
-    t.integer  "shop_id"
-    t.integer  "buy_price"
-    t.integer  "sell_price"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "good_id"
-    t.integer  "quantity"
   end
 
   create_table "shops", :force => true do |t|
@@ -113,6 +112,17 @@ ActiveRecord::Schema.define(:version => 20130510213005) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "wares", :force => true do |t|
+    t.integer  "good_id"
+    t.integer  "buy_price"
+    t.integer  "sell_price"
+    t.integer  "quantity",      :default => 0
+    t.integer  "vendable_id"
+    t.string   "vendable_type"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
 end

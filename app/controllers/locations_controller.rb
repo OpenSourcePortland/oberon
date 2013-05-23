@@ -9,6 +9,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    @shops = @location.shops
 
     respond_to do |format|
       format.html

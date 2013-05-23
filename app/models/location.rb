@@ -2,6 +2,7 @@ class Location < ActiveRecord::Base
   attr_accessible :category, :name, :x, :y, :z
   
   has_many :properties
+  has_many :shops
   
   validates :x, :y, :z, :presence => true
   

@@ -1,0 +1,25 @@
+<h1>Listing shops</h1>
+
+<table>
+  <tr>
+    <th>Location</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shops.each do |shop| %>
+  <tr>
+    <td><%= shop.location_id %></td>
+    <td><%= shop.name %></td>
+    <td><%= link_to 'Show', shop %></td>
+    <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
+    <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shop', new_shop_path %>

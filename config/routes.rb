@@ -21,6 +21,7 @@ Oberon::Application.routes.draw do
     member do
       post 'travel'
     end
+    resources :images
   end
 
   resource :profile

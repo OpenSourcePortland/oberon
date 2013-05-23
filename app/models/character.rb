@@ -1,10 +1,12 @@
 class Character < ActiveRecord::Base
-  attr_accessible :gender, :name, :species, :location_id #:profile_attributes, :profiles_attributes
+  attr_accessible :gender, :name, :species, :location_id, :images #:profile_attributes, :profiles_attributes
   
   has_one :profile
   has_one :ship
   belongs_to :location
   has_many :properties
+  has_many :images, as: :imageable
+    
   
   PLAYER_ATTRIBUTES = [:compassion, :courage, :dependability,
                        :endurance, :honesty, :honor,             

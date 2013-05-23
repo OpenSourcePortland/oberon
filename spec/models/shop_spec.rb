@@ -13,7 +13,7 @@ describe Shop do
   
   #it_behaves_like "owning"
   #it_behaves_like "vending"
-  #it_behaves_like "transactionable"
+  it_behaves_like "transactionable"
   
   it "#buy_price returns the buy_price of the good" do
     @vendor.stock(@good, 10, 5, 6)
@@ -43,6 +43,14 @@ describe Shop do
   it "#trades_in? should return false if shop does not trade in that item" do
     not_in_stock = Fabricate(:good)
     expect(@vendor.trades_in?(not_in_stock)).to be_false
+  end
+  
+  it "#reduce_good should not destroy the posession if quantity is reduced to 0" do
+    new_good = Fabricate(:good)
+    @owner.add_good(new_good, 5)
+    expect(@owner.wares.count).to eq(1)
+    @owner.reduce_good(new_good, 5)
+    expect(@owner.wares.count).to eq(1)
   end
   
 end

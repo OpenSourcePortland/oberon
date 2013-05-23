@@ -3,10 +3,7 @@ class Possession < ActiveRecord::Base
   
   belongs_to :ownable, polymorphic: true
   
-  
-  def check_for_destroy
-    if quantity <= 0
-      self.destroy
-    end
+  def should_be_destroyed?
+    quantity <= 0 
   end
 end

@@ -11,8 +11,6 @@ describe Character do
   
   let(:character) {@owner}
   
-  #it_behaves_like "owning"
-  #it_behaves_like "vending"
   it_behaves_like "transactionable"
   
   describe "turns" do  
@@ -50,5 +48,14 @@ describe Character do
     character.turns_spent = 0
     character.travel(@destination)
     expect(character.location).to be(@destination)
+  end
+  
+  it "#reduce_good should destroy the posession if quantity is reduced to 0" do
+    new_good = Fabricate(:good)
+    expect(@owner.possessions.count).to eq(0)
+    @owner.add_good(new_good, 5)
+    expect(@owner.possessions.count).to eq(1)
+    @owner.reduce_good(new_good, 5)
+    expect(@owner.possessions.count).to eq(0)
   end
 end

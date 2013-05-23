@@ -2,7 +2,6 @@ module Transactionable
   
   def add_good(good, quantity)
     item = find_or_create_item(good)
-
     manipulate_quantity(item, quantity)
   end
   
@@ -41,7 +40,7 @@ module Transactionable
   
   def manipulate_quantity(item, quantity)
     item.update_attributes(quantity: item.quantity + quantity)
-    #item.check_for_destroy
+    item.destroy if item.should_be_destroyed? 
   end
 
   def find_item(good)

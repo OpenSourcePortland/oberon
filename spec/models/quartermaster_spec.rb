@@ -119,8 +119,7 @@ describe Quartermaster do
       it "#transact should return false and not change quantities if negative numbers used" do
         @shop.stock(@good, 10, 0, 0)
         expect{Quartermaster.transact(@character, @shop, @good, -5)}.to change{@character.quantity_of(@good)}.by(0)
-        expect(Quartermaster.transact(@character, @shop, @good, -5)).to be_true
-        
+        expect(Quartermaster.transact(@character, @shop, @good, -5)).to be_false
       end
     end    
   end

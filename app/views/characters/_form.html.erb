@@ -23,11 +23,6 @@
     <%= f.label :species %><br />
     <%= f.text_field :species %>
   </div>
-  <%= fields_for @image, :html => {:multipart => true} do |f|%>
-    <div class="field">
-      <%= f.file_field :image %>
-    </div>
-  <% end %>
   <%= fields_for @profile do |f|%>
 
 	  <% Profile::PLAYER_ATTRIBUTES.each do |attribute| %>

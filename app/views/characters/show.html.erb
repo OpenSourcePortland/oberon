@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <b>Name:</b>
   <%= @character.name %>
@@ -18,19 +17,13 @@
 Images: <%= @character.images.count %>
 <br />
 
-<% @character.images.each do |image| %>
-  <%= image_tag image.image_url.to_s, :width => "400px" %>
-  <div class="actions">
-    <%= link_to "edit", edit_character_image_path(image) %> |
-    <%= link_to "remove", image, :confirm => 'Are you sure?', :method => :delete %>
-  </div>
-<% end %>
+
+<%= render "images/images" %>
 
 
 
 
-
-
+<p><%= link_to "New Image", [:new, @character, :image] %></p>
 
 <%= link_to 'Edit', edit_character_path(@character) %> |
 <%= link_to 'Back', characters_path %>

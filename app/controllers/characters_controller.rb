@@ -10,6 +10,9 @@ class CharactersController < ApplicationController
 
   def show
     @character = Character.find(params[:id])
+    @imageable = @character
+    @images = @imageable.images
+    @image = Image.new
 
     respond_to do |format|
       format.html 

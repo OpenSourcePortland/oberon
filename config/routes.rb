@@ -1,5 +1,9 @@
 Oberon::Application.routes.draw do
 
+  get "images/index"
+
+  get "images/new"
+
   resources :materials
 
 

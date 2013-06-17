@@ -15,6 +15,22 @@
   <%= @character.species %>
 </p>
 
+Images: <%= @character.images.count %>
+<br />
+
+<% @character.images.each do |image| %>
+  <%= image_tag image.image_url.to_s, :width => "400px" %>
+  <div class="actions">
+    <%= link_to "edit", edit_character_image_path(image) %> |
+    <%= link_to "remove", image, :confirm => 'Are you sure?', :method => :delete %>
+  </div>
+<% end %>
+
+
+
+
+
+
 
 <%= link_to 'Edit', edit_character_path(@character) %> |
 <%= link_to 'Back', characters_path %>

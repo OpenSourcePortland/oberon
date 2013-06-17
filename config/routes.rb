@@ -14,8 +14,7 @@ Oberon::Application.routes.draw do
   end
 
 
-  resources :locations
-
+  resources :locations  
 
   resources :characters do
     member do

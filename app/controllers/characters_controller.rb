@@ -59,7 +59,7 @@ class CharactersController < ApplicationController
       if @character.update_attributes(params[:character])
         @image.save!
         @profile.update_attributes((params[:profile]))
-        format.html { redirect_to dashboard_path, notice: 'Bam! Sucess!' }
+        format.html { redirect_to dashboard_path, notice: 'Bam! Success!' }
       else
         format.html { render action: "edit" }
       end
@@ -87,7 +87,7 @@ class CharactersController < ApplicationController
     if @character.ship.fly(distance)
       @character.travel(@destination)
       respond_to do |format|
-        format.html { redirect_to dashboard_path, notice: 'Bam! Sucess!' }
+        format.html { redirect_to dashboard_path, notice: 'Bam! Success!' }
       end
     else
       respond_to do |format|

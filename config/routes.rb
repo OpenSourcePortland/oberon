@@ -1,5 +1,9 @@
 Oberon::Application.routes.draw do
 
+  get "images/index"
+
+  get "images/new"
+
   resources :materials
 
 
@@ -14,13 +18,13 @@ Oberon::Application.routes.draw do
   end
 
 
-  resources :locations
-
+  resources :locations  
 
   resources :characters do
     member do
       post 'travel'
     end
+    resources :images
   end
 
   resource :profile

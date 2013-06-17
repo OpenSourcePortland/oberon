@@ -1,0 +1,6 @@
+<% @images.each do |image| %>
+  <%= image_tag image.image_url.to_s, :width => "400px" %>
+  <div class="actions">
+    <%= link_to "remove", polymorphic_url([@imageable, image]), :confirm => 'Are you sure?', :method => :delete %>
+  </div>
+<% end %>

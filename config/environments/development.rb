@@ -34,4 +34,6 @@ Oberon::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  OBERON_IMAGES_BUCKET = "oberon.test.images"
 end
